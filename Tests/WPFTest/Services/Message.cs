@@ -13,9 +13,6 @@ namespace WPFTestMailSender.Services
         public static MailAddress From { get; set; } = new MailAddress("dm_91@bk.ru", "Dmitry");
         public static MailAddress To { get; set; } = new MailAddress("dmitry.meshkov@icloud.com", "Dmitry");
 
-        public static MailMessage FromWhereToWhereSend { get => new MailMessage(From, To); }
-
-        public static string Subject { get; set; }
-        public static string Body { get; set; }
+        public static MailMessage EmailMessage { get; set; } = new MailMessage(From, To);
     }
 }
