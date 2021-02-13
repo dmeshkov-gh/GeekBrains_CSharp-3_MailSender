@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BD624EFA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "Tests\ConsoleTest\ConsoleTest.csproj", "{323A5AC5-E3DE-4AD4-8A5D-938E2E7F9F79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFTest", "Tests\WPFTest\WPFTest.csproj", "{DE1F724F-B59C-4A1F-8D1A-1A9D8BCBCAE0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFTestMailSender", "Tests\WPFTest\WPFTestMailSender.csproj", "{DE1F724F-B59C-4A1F-8D1A-1A9D8BCBCAE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
