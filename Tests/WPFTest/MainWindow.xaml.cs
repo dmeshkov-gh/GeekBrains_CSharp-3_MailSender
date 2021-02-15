@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Net;
+using System.Net.Mail;
 
 namespace WPFTest
 {
@@ -23,6 +13,40 @@ namespace WPFTest
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void SendButton_Click(object sender, RoutedEventArgs e)
+        {
+            MailAddress from = new MailAddress("test-email-geekbrains@yandex.ru", "Dmitry");
+            MailAddress to = new MailAddress("dm_91@bk.ru", "Dmitry");
+
+            MailMessage message = new MailMessage(from, to);
+            message.Subject = "Тестовое письмо";
+            message.Body = "Моё письмо";
+
+            SmtpClient client = new SmtpClient("smtp.yandex.com", 587);
+            client.EnableSsl = true;
+            client.Credentials = new NetworkCredential
+            {
+                UserName = Login.Text,
+                SecurePassword = Password.SecurePassword
+            };
+
+            try
+            {
+                client.Send(message);
+
+                MessageBox.Show("Почта успешно отправлена!", "Отправка почты", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            }
+            catch (SmtpException)
+            {
+                MessageBox.Show("Ошибка авторизации", "Ошибка отправки почты", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch (TimeoutException)
+            {
+                MessageBox.Show("Ошибка адреса сервера", "Ошибка отправки почты", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
