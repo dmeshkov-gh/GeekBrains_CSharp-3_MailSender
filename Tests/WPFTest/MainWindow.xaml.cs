@@ -17,12 +17,12 @@ namespace WPFTest
 
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
-            MailAddress from = new MailAddress("test-email-geekbrains@yandex.ru", "Dmitry");
-            MailAddress to = new MailAddress("dm_91@bk.ru", "Dmitry");
+            MailAddress from = new MailAddress(Login.Text);
+            MailAddress to = new MailAddress(EmailTo.Text);
 
             MailMessage message = new MailMessage(from, to);
-            message.Subject = "Тестовое письмо";
-            message.Body = "Моё письмо";
+            message.Subject = EmailHeader.Text;
+            message.Body = EmailBody.Text;
 
             SmtpClient client = new SmtpClient("smtp.yandex.com", 587);
             client.EnableSsl = true;

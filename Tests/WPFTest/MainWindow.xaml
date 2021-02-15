@@ -24,25 +24,25 @@
         <StackPanel Grid.Column="0" Grid.Row="1">
             <TextBlock Text="Логин" TextAlignment="Center"/>
             <TextBox Name ="Login" 
-                     HorizontalAlignment="Center" Width="250" Margin="5"/>
+                     HorizontalAlignment="Center" Width="200" Margin="5"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1">
             <TextBlock Text="Пароль" TextAlignment="Center"/>
             <PasswordBox Name="Password" 
                          HorizontalAlignment="Center" 
-                         Width="150" Margin="5"/>
+                         Width="200" Margin="5"/>
         </StackPanel>
-        <StackPanel Grid.Column="0" Grid.Row="2">
+        <!--<StackPanel Grid.Column="0" Grid.Row="2">
             <TextBlock Text="От" TextAlignment="Center"/>
             <TextBox Name ="EmailFrom" 
                      HorizontalAlignment="Center" 
                      Width="150" Margin="5"/>
-        </StackPanel>
+        </StackPanel>-->
         <StackPanel Grid.Column="0" Grid.Row="3">
             <TextBlock Text="Кому" TextAlignment="Center"/>
             <TextBox Name ="EmailTo" 
                      HorizontalAlignment="Center" 
-                     Width="150" Margin="5"/>
+                     Width="200" Margin="5"/>
         </StackPanel>
         <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4">
             <Grid.RowDefinitions>
