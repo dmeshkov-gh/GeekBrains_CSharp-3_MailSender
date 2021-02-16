@@ -5,7 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Email Sender" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="TextBlockFontStyle">
+            <Setter Property="ItemsControl.FontFamily" Value="Verdana"/>
+            <Setter Property="ItemsControl.FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -19,27 +25,32 @@
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="0" Grid.ColumnSpan="2">
-            <TextBlock Text="Отправка электронных писем" TextAlignment="Center"/>
+            <TextBlock Text="Отправка электронных писем" TextAlignment="Center"
+                       Style="{StaticResource TextBlockFontStyle}"/>
         </StackPanel>
         <StackPanel Grid.Column="0" Grid.Row="1">
-            <TextBlock Text="Логин" TextAlignment="Center"/>
+            <TextBlock Text="Логин / Адрес электронной почты" TextAlignment="Center"
+                       Style="{StaticResource TextBlockFontStyle}"/>
             <TextBox Name ="Login" 
                      HorizontalAlignment="Center" Width="200" Margin="5"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <TextBlock Text="Пароль" TextAlignment="Center"/>
+            <TextBlock Text="Пароль" TextAlignment="Center"
+                       Style="{StaticResource TextBlockFontStyle}"/>
             <PasswordBox Name="Password" 
                          HorizontalAlignment="Center" 
                          Width="200" Margin="5"/>
         </StackPanel>
         <!--<StackPanel Grid.Column="0" Grid.Row="2">
-            <TextBlock Text="От" TextAlignment="Center"/>
+            <TextBlock Text="От" TextAlignment="Center"
+                Style="{StaticResource TextBlockFontStyle}"/>
             <TextBox Name ="EmailFrom" 
                      HorizontalAlignment="Center" 
                      Width="150" Margin="5"/>
         </StackPanel>-->
         <StackPanel Grid.Column="0" Grid.Row="3">
-            <TextBlock Text="Кому" TextAlignment="Center"/>
+            <TextBlock Text="Кому" TextAlignment="Center"
+                       Style="{StaticResource TextBlockFontStyle}"/>
             <TextBox Name ="EmailTo" 
                      HorizontalAlignment="Center" 
                      Width="200" Margin="5"/>
@@ -51,7 +62,7 @@
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <DockPanel Grid.Row="0">
-                <TextBlock Text="Тема письма"
+                <TextBlock Text="Тема письма" Style="{StaticResource TextBlockFontStyle}"
                            HorizontalAlignment="Left" VerticalAlignment="Center"  TextAlignment="Center" 
                            Margin="10"/>
                 <TextBox Name ="EmailHeader" 
