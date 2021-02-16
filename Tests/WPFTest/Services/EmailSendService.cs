@@ -19,12 +19,14 @@ namespace WPFTestMailSender.Services
                 Body = body
             };
 
-            Client = new SmtpClient(Host, Port);
-            Client.EnableSsl = true;
-            Client.Credentials = new NetworkCredential
+            Client = new SmtpClient(Host, Port)
             {
-                UserName = login,
-                SecurePassword = password
+                EnableSsl = true,
+                Credentials = new NetworkCredential
+                {
+                    UserName = login,
+                    SecurePassword = password
+                }
             };
         }
 
