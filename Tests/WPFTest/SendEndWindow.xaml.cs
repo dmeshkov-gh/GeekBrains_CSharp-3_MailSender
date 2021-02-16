@@ -24,7 +24,7 @@ namespace WPFTestMailSender
             InitializeComponent();
         }
 
-        private void btnOK_Click(object sender, RoutedEventArgs e)
+        private void BtnOK_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
