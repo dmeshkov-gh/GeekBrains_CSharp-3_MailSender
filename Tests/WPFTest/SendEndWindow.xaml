@@ -12,7 +12,7 @@
             <Label Name="ISendEnd" Content="Работа завершена"
                    HorizontalAlignment="Center" VerticalAlignment="Center"
                    Width="Auto" Height="Auto"
-                   FontSize="36"/>
+                   FontSize="25"/>
             <Button x:Name="btnOK" Content="Ok"
                     Margin="50,20" Width="50" Click="btnOK_Click"/>
         </StackPanel>

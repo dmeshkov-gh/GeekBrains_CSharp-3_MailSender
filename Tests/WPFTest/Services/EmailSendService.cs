@@ -8,6 +8,8 @@ namespace WPFTestMailSender.Services
 {
     class EmailSendService : EmailInfo
     {
+        public delegate void EmailSendServiceHandler(string message);
+        public event EmailSendServiceHandler ShowEndWindowMessage;
         public EmailSendService(string login, SecureString password, string mailTo, string subject, string body)
         {
             From = new MailAddress(login);
@@ -35,16 +37,16 @@ namespace WPFTestMailSender.Services
             try
             {
                 Client.Send(EmailMessage);
-                MessageBox.Show("Почта успешно отправлена!", "Отправка почты", MessageBoxButton.OK, MessageBoxImage.Information);
+                ShowEndWindowMessage?.Invoke("Почта успешно отправлена!");
 
             }
             catch (SmtpException)
             {
-                MessageBox.Show("Ошибка авторизации", "Ошибка отправки почты", MessageBoxButton.OK, MessageBoxImage.Warning);
+                ShowEndWindowMessage?.Invoke("Ошибка авторизации");
             }
             catch (TimeoutException)
             {
-                MessageBox.Show("Ошибка адреса сервера", "Ошибка отправки почты", MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowEndWindowMessage?.Invoke("Ошибка адреса сервера");
             }
         }
     }
