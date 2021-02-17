@@ -222,7 +222,28 @@
                 </Grid>
             </TabItem>
             
-            <TabItem Header="Статистика"></TabItem>
+            <TabItem Header="Статистика">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Отправлено писем:"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="0" Margin="5,0,0,0"/>
+
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Всего отправителей:"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="0" Margin="5,0,0,0"/>
+
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Всего получателей:"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="0" Margin="5,0,0,0"/>
+                </Grid>
+            </TabItem>
         </TabControl>
         
 
