@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MailSender"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
+        Title="MainWindow" Height="450" MinHeight="450" Width="800" MinWidth="600" 
+        WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
     <DockPanel >
         
         <Menu DockPanel.Dock="Top">
@@ -79,7 +80,7 @@
             <TabItem Header="Расписание">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" MinWidth="191"/>
+                        <ColumnDefinition Width="Auto" MinWidth="195" MaxWidth="250"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
