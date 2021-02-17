@@ -64,7 +64,15 @@
                         </ToolBar>
                     </ToolBarTray>
 
-                    <DataGrid Grid.Row="1"></DataGrid>
+                    <GroupBox Grid.Row="1" Header="Список получателей">
+                        <DataGrid AutoGenerateColumns="False" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" MinWidth="30"/>
+                                <DataGridTextColumn Header="Имя" Width="*"/>
+                                <DataGridTextColumn Header="Адрес" MinWidth="120"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
                 </Grid>
             </TabItem>
             
