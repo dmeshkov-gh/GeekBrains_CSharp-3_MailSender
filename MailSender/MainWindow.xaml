@@ -33,16 +33,24 @@
 
                     <ToolBarTray Grid.Row="0">
                         <ToolBar Header="Сервера" Band="0">
-                            <ComboBox MinWidth="90" MaxWidth="140" SelectedIndex="0">
+                            <ComboBox MinWidth="90" MaxWidth="200" Margin="26,0,0,0" SelectedIndex="0">
                                 <ComboBoxItem>smpt:yandex.com:587</ComboBoxItem>
                             </ComboBox>
                             
-                            <Button Content="Добавить"/>
+                            <Button Margin="3,0,0,0" Content="Добавить"/>
                             <Button Content="Удалить"/>
                             <Button Content="Редактировать"/>
                         </ToolBar>
 
-                        <ToolBar Header="Отправители" Band="1"></ToolBar>
+                        <ToolBar Header="Отправители" Band="1">
+                            <ComboBox MinWidth="90" MaxWidth="200" SelectedIndex="0">
+                                <ComboBoxItem>test-email-geekbrains@yandex.ru</ComboBoxItem>
+                            </ComboBox>
+
+                            <Button Margin="3,0,0,0" Content="Добавить"/>
+                            <Button Content="Удалить"/>
+                            <Button Content="Редактировать"/>
+                        </ToolBar>
                         
                         <ToolBar Header="Планировщик" Band="0"></ToolBar>
                         
