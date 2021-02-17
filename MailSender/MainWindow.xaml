@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:local="clr-namespace:MailSender"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" MinHeight="450" Width="800" MinWidth="600" 
@@ -34,13 +35,13 @@
 
                     <ToolBarTray Grid.Row="0">
                         <ToolBar Header="Сервера" Band="0">
-                            <ComboBox Width="200" Margin="26,0,0,0" SelectedIndex="0">
+                            <ComboBox Width="200" Margin="27,0,0,0" SelectedIndex="0">
                                 <ComboBoxItem>smpt.yandex.com:587</ComboBoxItem>
                             </ComboBox>
-                            
-                            <Button Margin="4,0,0,0" Content="Добавить"/>
-                            <Button Content="Удалить"/>
-                            <Button Content="Редактировать"/>
+
+                            <Button ToolTip="Добавить" Margin="4,0,0,0" fa:Awesome.Content="Solid_Plus" Foreground="Green"/>
+                            <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_Edit" Foreground="Orange"/>
+                            <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_TrashAlt" Foreground="Red"/>
                         </ToolBar>
 
                         <ToolBar Header="Отправители" Band="1">
@@ -48,20 +49,20 @@
                                 <ComboBoxItem>test-email-geekbrains@yandex.ru</ComboBoxItem>
                             </ComboBox>
 
-                            <Button Margin="3,0,0,0" Content="Добавить"/>
-                            <Button Content="Удалить"/>
-                            <Button Content="Редактировать"/>
+                            <Button ToolTip="Добавить" Margin="4,0,0,0" fa:Awesome.Content="Solid_Plus" Foreground="Green"/>
+                            <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_UserEdit" Foreground="Orange"/>
+                            <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_TrashAlt" Foreground="Red"/>
                         </ToolBar>
                         
-                        <ToolBar Margin ="5,0,0,0" Band="0">
+                        <ToolBar Margin ="7,0,0,0" Band="0">
                             <TextBlock Text="Перейти в планировщик" VerticalAlignment="Center"/>
-                            <Button>Добавить</Button>
+                            <Button ToolTip="Добавить" fa:Awesome.Content="Regular_CalendarAlt" Foreground="Blue"></Button>
                         </ToolBar>
 
                         <ToolBar Margin="5,0,0,0" Header="Получатели" Band="1">
-                            <Button Margin="3,0,0,0" Content="Добавить"/>
-                            <Button Content="Удалить"/>
-                            <Button Content="Редактировать"/>
+                            <Button ToolTip="Добавить" Margin="4,0,0,0" fa:Awesome.Content="Solid_Plus" Foreground="Green"/>
+                            <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_Edit" Foreground="Orange"/>
+                            <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_TrashAlt" Foreground="Red"/>
                         </ToolBar>
                     </ToolBarTray>
 
@@ -122,7 +123,8 @@
                                     <GroupBox.Header>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="Задание от 17.02.2021 16:30" VerticalAlignment="Center"/>
-                                            <Button Background="White" Foreground="Red" FontWeight="Bold" BorderThickness="0" Margin="5,0,0,0">X</Button>
+                                            <Button ToolTip="Закрыть задание" fa:Awesome.Content="Regular_CalendarTimes" 
+                                                    Foreground="Red" Background="White" BorderThickness="0" Margin="10,0,0,0"></Button>
                                         </StackPanel>
                                     </GroupBox.Header>
 
@@ -158,7 +160,8 @@
                                     <GroupBox.Header>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="Задание от 17.02.2021 16:30" VerticalAlignment="Center"/>
-                                            <Button Background="White" Foreground="Red" FontWeight="Bold" BorderThickness="0" Margin="5,0,0,0">X</Button>
+                                            <Button ToolTip="Закрыть задание" fa:Awesome.Content="Regular_CalendarTimes" 
+                                                    Foreground="Red" Background="White" BorderThickness="0" Margin="10,0,0,0"></Button>
                                         </StackPanel>
                                     </GroupBox.Header>
 
