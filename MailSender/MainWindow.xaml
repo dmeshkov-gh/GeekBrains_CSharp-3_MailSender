@@ -22,11 +22,41 @@
                 <TextBlock Text="Готов..."/>
             </StatusBarItem>
         </StatusBar>
-        
+
         <TabControl>
-            <TabItem Header="Списки"></TabItem>
-            <TabItem Header="Раписание"></TabItem>
+            <TabItem Header="Списки">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <ToolBarTray Grid.Row="0">
+                        <ToolBar Header="Сервера" Band="0">
+                            <ComboBox MinWidth="90" MaxWidth="140" SelectedIndex="0">
+                                <ComboBoxItem>smpt:yandex.com:587</ComboBoxItem>
+                            </ComboBox>
+                            
+                            <Button Content="Добавить"/>
+                            <Button Content="Удалить"/>
+                            <Button Content="Редактировать"/>
+                        </ToolBar>
+
+                        <ToolBar Header="Отправители" Band="1"></ToolBar>
+                        
+                        <ToolBar Header="Планировщик" Band="0"></ToolBar>
+                        
+                        <ToolBar Header="Получатели" Band="1"></ToolBar>
+                    </ToolBarTray>
+
+                    <DataGrid Grid.Row="1"></DataGrid>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Расписание"></TabItem>
+            
             <TabItem Header="Письма"></TabItem>
+            
             <TabItem Header="Статистика"></TabItem>
         </TabControl>
         
