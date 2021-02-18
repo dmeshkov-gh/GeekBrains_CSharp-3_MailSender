@@ -37,7 +37,7 @@
 
                     <ToolBarTray Grid.Row="0">
                         <ToolBar Header="Сервер" Band="0">
-                            <ComboBox Width="200" Margin="31,0,0,0" SelectedIndex="0"
+                            <ComboBox Name="ServersList" Width="200" Margin="31,0,0,0" SelectedIndex="0"
                                          ItemsSource="{x:Static data:TestData.Servers}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -61,8 +61,15 @@
                         </ToolBar>
 
                         <ToolBar Header="Отправитель" Band="1">
-                            <ComboBox Width="200" SelectedIndex="0">
-                                <ComboBoxItem>test-email-geekbrains@yandex.ru</ComboBoxItem>
+                            <ComboBox Name="SendersList" Width="200" SelectedIndex="0"
+                                      ItemsSource="{x:Static data:TestData.Senders}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock ToolTip="{Binding Description}">
+                                             <TextBlock Text="{Binding Address}"/>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
                             </ComboBox>
 
                             <Button ToolTip="Добавить" Margin="4,0,0,0" fa:Awesome.Content="Solid_Plus" Foreground="Green"/>
@@ -83,11 +90,16 @@
                     </ToolBarTray>
 
                     <GroupBox Grid.Row="1" Header="Список получателей">
-                        <DataGrid AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid Name="ReceiversList" ItemsSource="{x:Static data:TestData.Receivers}" 
+                                  AutoGenerateColumns="False" 
+                                  IsReadOnly="True"
+                                  GridLinesVisibility="Vertical"
+                                  AlternatingRowBackground="AliceBlue"
+                                  VerticalGridLinesBrush="Gray">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="ID" MinWidth="30"/>
-                                <DataGridTextColumn Header="Имя" Width="*"/>
-                                <DataGridTextColumn Header="Адрес" MinWidth="120"/>
+                                <DataGridTextColumn Header="ID" MinWidth="30" Binding="{Binding Id}"/>
+                                <DataGridTextColumn Header="Имя" Width="*" Binding="{Binding Name}"/>
+                                <DataGridTextColumn Header="Адрес" MinWidth="120" Binding="{Binding Address}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </GroupBox>
@@ -226,16 +238,19 @@
                     </Grid.ColumnDefinitions>
 
                     <GroupBox Grid.Column="0" Header="Письма">
-                        <ListBox></ListBox>
+                        <ListBox Name="MessagesList" ItemsSource="{x:Static data:TestData.Messages}" 
+                                 DisplayMemberPath="Title" SelectedIndex="0"/>
                     </GroupBox>
 
                     <GroupBox Grid.Column="1" Header="Редактор">
                         <DockPanel >
                             <GroupBox DockPanel.Dock="Top" Header="Заголовок">
-                                <TextBox/>
+                                <TextBox Text="{Binding SelectedItem.Title, ElementName=MessagesList}"/>
                             </GroupBox>
+                            
                             <GroupBox Header="Текст письма">
-                                <TextBox/>
+                                <TextBox AcceptsReturn="True" AcceptsTab="True"
+                                         Text="{Binding SelectedItem.Body, ElementName=MessagesList}"/>
                             </GroupBox>
                         </DockPanel>
                     </GroupBox>
