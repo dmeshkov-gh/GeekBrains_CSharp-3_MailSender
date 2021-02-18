@@ -35,16 +35,16 @@
 
                     <ToolBarTray Grid.Row="0">
                         <ToolBar Header="Сервера" Band="0">
-                            <ComboBox Width="200" Margin="27,0,0,0" SelectedIndex="0">
+                            <ComboBox Width="200" Margin="25,0,0,0" SelectedIndex="0">
                                 <ComboBoxItem>smpt.yandex.com:587</ComboBoxItem>
                             </ComboBox>
 
-                            <Button ToolTip="Добавить" Margin="4,0,0,0" fa:Awesome.Content="Solid_Plus" Foreground="Green"/>
+                            <Button ToolTip="Добавить" Margin="5,0,0,0" fa:Awesome.Content="Solid_Plus" Foreground="Green"/>
                             <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_Edit" Foreground="Orange"/>
                             <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_TrashAlt" Foreground="Red"/>
                         </ToolBar>
 
-                        <ToolBar Header="Отправители" Band="1">
+                        <ToolBar Header="Отправитель" Band="1">
                             <ComboBox Width="200" SelectedIndex="0">
                                 <ComboBoxItem>test-email-geekbrains@yandex.ru</ComboBoxItem>
                             </ComboBox>
@@ -55,13 +55,13 @@
                         </ToolBar>
                         
                         <ToolBar Margin ="7,0,0,0" Band="0">
-                            <TextBlock Text="Перейти в планировщик" VerticalAlignment="Center"/>
+                            <TextBlock Text="Планировщик" VerticalAlignment="Center"/>
                             <Button ToolTip="Добавить" fa:Awesome.Content="Regular_CalendarAlt" Foreground="Blue"></Button>
                         </ToolBar>
 
                         <ToolBar Margin="5,0,0,0" Header="Получатели" Band="1">
                             <Button ToolTip="Добавить" Margin="4,0,0,0" fa:Awesome.Content="Solid_Plus" Foreground="Green"/>
-                            <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_Edit" Foreground="Orange"/>
+                            <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_UserEdit" Foreground="Orange"/>
                             <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_TrashAlt" Foreground="Red"/>
                         </ToolBar>
                     </ToolBarTray>
