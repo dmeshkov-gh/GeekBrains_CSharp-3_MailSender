@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MailSender.Data
 {
-    class TestData
+    static class TestData
     {
-        public IList<Server> Servers { get; } = new List<Server>
+        public static IList<Server> Servers { get; } = new List<Server>
         {
             new Server
             {
@@ -25,7 +25,7 @@ namespace MailSender.Data
             new Server
             {
                  Id = 2,
-                 Name = "GMail",
+                 Name = "Gmail",
                  Address = "smpt.gmail.com",
                  Port = 465,
                  IsSSLUsed = true,
@@ -34,7 +34,7 @@ namespace MailSender.Data
             },
         };
 
-        public IList<Sender> Senders { get; } = new List<Sender>
+        public static IList<Sender> Senders { get; } = new List<Sender>
         {
             new Sender
             {
@@ -61,7 +61,7 @@ namespace MailSender.Data
             }
         };
 
-        public IList<Receiver> Receivers { get; } = new List<Receiver> 
+        public static IList<Receiver> Receivers { get; } = new List<Receiver> 
         {
             new Receiver
             {
@@ -88,7 +88,7 @@ namespace MailSender.Data
             }
         };
 
-        public IList<Message> Messages { get; } = Enumerable
+        public static IList<Message> Messages { get; } = Enumerable
             .Range(1, 10)
             .Select(i => new Message
             {

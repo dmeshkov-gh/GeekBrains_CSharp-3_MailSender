@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.fontawesome.com/icons/"
+        xmlns:m="clr-namespace:MailSender.Models"
+        xmlns:data="clr-namespace:MailSender.Data"
         xmlns:local="clr-namespace:MailSender"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" MinHeight="450" Width="800" MinWidth="600" 
@@ -34,9 +36,23 @@
                     </Grid.RowDefinitions>
 
                     <ToolBarTray Grid.Row="0">
-                        <ToolBar Header="Сервера" Band="0">
-                            <ComboBox Width="200" Margin="25,0,0,0" SelectedIndex="0">
-                                <ComboBoxItem>smpt.yandex.com:587</ComboBoxItem>
+                        <ToolBar Header="Сервер" Band="0">
+                            <ComboBox Width="200" Margin="31,0,0,0" SelectedIndex="0"
+                                         ItemsSource="{x:Static data:TestData.Servers}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                            <TextBlock.ToolTip>
+                                                <TextBlock>
+                                                    <TextBlock Text="{Binding Address}"/>
+                                                    :
+                                                    <TextBlock Text="{Binding Port}"/>
+                                                </TextBlock>
+                                            </TextBlock.ToolTip>
+                                            <TextBlock Text="{Binding Name}"/>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
                             </ComboBox>
 
                             <Button ToolTip="Добавить" Margin="5,0,0,0" fa:Awesome.Content="Solid_Plus" Foreground="Green"/>
