@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MailSender.Service
 {
-    class SmtpSender
+    public class SmtpSender
     {
         public delegate void EmailSendServiceHandler(string message);
         public event EmailSendServiceHandler ShowEndWindowMessage;

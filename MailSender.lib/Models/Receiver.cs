@@ -1,6 +1,6 @@
 ﻿namespace MailSender.Models
 {
-    class Receiver : User
+    public class Receiver : User
     {
 
     }
