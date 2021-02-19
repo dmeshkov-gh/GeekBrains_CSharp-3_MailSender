@@ -17,7 +17,7 @@
 
 		<StackPanel Grid.Row="0">
 			<TextBlock Text="Имя сервера" HorizontalAlignment="Left" Margin="20,5"/>
-			<TextBox HorizontalAlignment="Stretch" Margin="15, 0"/>
+			<TextBox Name="ServerName" HorizontalAlignment="Stretch" Margin="15, 0"/>
 		</StackPanel>
 
 		<Grid Grid.Row="1">
@@ -29,17 +29,17 @@
 
 			<StackPanel Grid.Column="0">
 				<TextBlock Text="Адрес сервера" HorizontalAlignment="Left" Margin="20,5"/>
-				<TextBox HorizontalAlignment="Stretch" Margin="15, 0"/>
+				<TextBox Name="ServerAddress" HorizontalAlignment="Stretch" Margin="15, 0"/>
 			</StackPanel>
 
 			<StackPanel Grid.Column="1">
 				<TextBlock Text="Порт" HorizontalAlignment="Center" Margin="5"/>
-				<TextBox HorizontalAlignment="Stretch"/>
+				<TextBox Name="Port" HorizontalAlignment="Stretch"/>
 			</StackPanel>
 
 			<StackPanel Grid.Column="2">
 				<TextBlock Text="SSL" HorizontalAlignment="Center" Margin="5"/>
-				<CheckBox HorizontalAlignment="Center" IsChecked="True"/>
+				<CheckBox Name="IsSSL" HorizontalAlignment="Center" IsChecked="True"/>
 			</StackPanel>
 		</Grid>
 
@@ -51,23 +51,23 @@
 
 			<StackPanel Grid.Column="0">
 				<TextBlock Text="Логин" HorizontalAlignment="Left" Margin="20,5"/>
-				<TextBox HorizontalAlignment="Stretch" Margin="15, 0"/>
+				<TextBox Name="Login" HorizontalAlignment="Stretch" Margin="15, 0"/>
 			</StackPanel>
 
 			<StackPanel Grid.Column="1">
 				<TextBlock Text="Пароль" HorizontalAlignment="Left" Margin="20,5"/>
-				<PasswordBox HorizontalAlignment="Stretch" Margin="15, 0"/>
+				<PasswordBox Name="Password" HorizontalAlignment="Stretch" Margin="15, 0"/>
 			</StackPanel>
 		</Grid>
 
 		<StackPanel Grid.Row="3">
 			<TextBlock Text="Описание" HorizontalAlignment="Left" Margin="20,5"/>
-			<TextBox HorizontalAlignment="Stretch" Margin="15, 0"/>
+			<TextBox Name="Description" HorizontalAlignment="Stretch" Margin="15, 0"/>
 		</StackPanel>
 
 		<StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
-			<Button Content="Ок" VerticalAlignment="Center" Margin="10,0" Width="50"/>
-			<Button Content="Отмена" VerticalAlignment="Center" Margin="10,0" Width="50"/>
+			<Button Name="Ok_Btn" Content="Ок" VerticalAlignment="Center" Margin="10,0" Width="50"/>
+			<Button Name="Cancel_Btn" Content="Отмена" VerticalAlignment="Center" Margin="10,0" Width="50"/>
 		</StackPanel>
 
 	</Grid>
