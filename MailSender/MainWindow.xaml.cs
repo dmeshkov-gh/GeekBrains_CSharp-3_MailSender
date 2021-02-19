@@ -24,5 +24,10 @@ namespace MailSender
         {
             InitializeComponent();
         }
+
+        private void Scheduler_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            Schedule_TabItem.Focus();
+        }
     }
 }

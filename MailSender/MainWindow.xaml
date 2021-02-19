@@ -79,7 +79,9 @@
                         
                         <ToolBar Margin ="7,0,0,0" Band="0">
                             <TextBlock Text="Планировщик" VerticalAlignment="Center"/>
-                            <Button ToolTip="Добавить" fa:Awesome.Content="Regular_CalendarAlt" Foreground="Blue"></Button>
+                            <Button Name ="Scheduler_Btn" ToolTip="Добавить задачу" 
+                                    fa:Awesome.Content="Regular_CalendarAlt" 
+                                    Foreground="Blue" Click="Scheduler_Btn_Click"></Button>
                         </ToolBar>
 
                         <ToolBar Margin="5,0,0,0" Header="Получатели" Band="1">
@@ -106,7 +108,7 @@
                 </Grid>
             </TabItem>
             
-            <TabItem Header="Расписание">
+            <TabItem Name="Schedule_TabItem" Header="Расписание">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" MinWidth="195" MaxWidth="250"/>
