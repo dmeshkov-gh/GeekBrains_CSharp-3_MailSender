@@ -26,5 +26,11 @@ namespace MailSender
         private void Scheduler_Btn_Click(object sender, RoutedEventArgs e) => Schedule_TabItem.Focus();
 
         private void Exit_Btn_Click(object sender, RoutedEventArgs e) => Close();
+
+        private void AddServer_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            ServerEditDialog serverEditDialog = new ServerEditDialog();
+            serverEditDialog.Show();
+        }
     }
 }
