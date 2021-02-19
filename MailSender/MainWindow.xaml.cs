@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace MailSender
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -25,9 +22,9 @@ namespace MailSender
             InitializeComponent();
         }
 
-        private void Scheduler_Btn_Click(object sender, RoutedEventArgs e)
-        {
-            Schedule_TabItem.Focus();
-        }
+
+        private void Scheduler_Btn_Click(object sender, RoutedEventArgs e) => Schedule_TabItem.Focus();
+
+        private void Exit_Btn_Click(object sender, RoutedEventArgs e) => Close();
     }
 }

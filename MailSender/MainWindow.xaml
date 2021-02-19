@@ -14,7 +14,7 @@
         
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
-                <MenuItem Header="Выход"/>
+                <MenuItem Name="Exit_Btn" Header="Выход" Click="Exit_Btn_Click"/>
             </MenuItem>
         </Menu>
         
