@@ -18,9 +18,9 @@ namespace MailSender.Service
         private readonly int _port;
         private readonly bool _isSSLUsed;
         private readonly string _login;
-        private readonly SecureString _password;
+        private readonly string _password;
 
-        public SmtpSender(string address, int port, bool useSSL, string login, SecureString password)
+        public SmtpSender(string address, int port, bool useSSL, string login, string password)
         {
             _address = address;
             _port = port;
@@ -43,7 +43,7 @@ namespace MailSender.Service
                 Credentials = new NetworkCredential
                 {
                     UserName = _login,
-                    SecurePassword = _password
+                    Password = _password
                 }
             };
 

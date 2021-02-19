@@ -34,7 +34,7 @@
 
 			<StackPanel Grid.Column="1">
 				<TextBlock Text="Порт" HorizontalAlignment="Center" Margin="5"/>
-				<TextBox Name="Port" HorizontalAlignment="Stretch"/>
+				<TextBox Name="Port" HorizontalAlignment="Stretch" TextInput="OnPort_TextInput"/>
 			</StackPanel>
 
 			<StackPanel Grid.Column="2">
@@ -56,7 +56,7 @@
 
 			<StackPanel Grid.Column="1">
 				<TextBlock Text="Пароль" HorizontalAlignment="Left" Margin="20,5"/>
-				<PasswordBox Name="Password" HorizontalAlignment="Stretch" Margin="15, 0"/>
+				<PasswordBox Name="Password" HorizontalAlignment="Stretch" Margin="15, 0" Password="dfg"/>
 			</StackPanel>
 		</Grid>
 
@@ -66,8 +66,8 @@
 		</StackPanel>
 
 		<StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
-			<Button Name="Ok_Btn" Content="Ок" VerticalAlignment="Center" Margin="10,0" Width="50"/>
-			<Button Name="Cancel_Btn" Content="Отмена" VerticalAlignment="Center" Margin="10,0" Width="50"/>
+			<Button Name="Ok_Btn" Content="Ок" VerticalAlignment="Center" Margin="10,0" Width="50" Click="Ok_Btn_Click"/>
+			<Button Name="Cancel_Btn" Content="Отмена" VerticalAlignment="Center" Margin="10,0" Width="50" Click="Cancel_Btn_Click"/>
 		</StackPanel>
 
 	</Grid>

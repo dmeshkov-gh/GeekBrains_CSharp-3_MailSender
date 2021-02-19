@@ -13,24 +13,24 @@ namespace MailSender.Data
         {
             new Server
             {
-                 Id = 1,
-                 Name = "Яндекс",
-                 Address = "smpt.yandex.com",
-                 Port = 587,
-                 IsSSLUsed = true,
-                 Login = "user@yandex.ru",
-                 Password = "PassWord",
+                 //Id = 1,
+                 //Name = "Яндекс",
+                 //Address = "smpt.yandex.com",
+                 //Port = 587,
+                 //IsSSLUsed = true,
+                 //Login = "user@yandex.ru",
+                 //Password = "PassWord",
             },
 
             new Server
             {
-                 Id = 2,
-                 Name = "Gmail",
-                 Address = "smpt.gmail.com",
-                 Port = 465,
-                 IsSSLUsed = true,
-                 Login = "user@gmail.com",
-                 Password = "PassWord",
+                 //Id = 2,
+                 //Name = "Gmail",
+                 //Address = "smpt.gmail.com",
+                 //Port = 465,
+                 //IsSSLUsed = true,
+                 //Login = "user@gmail.com",
+                 //Password = "PassWord",
             },
         };
 
