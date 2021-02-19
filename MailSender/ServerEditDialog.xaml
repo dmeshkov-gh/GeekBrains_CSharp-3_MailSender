@@ -56,7 +56,7 @@
 
 			<StackPanel Grid.Column="1">
 				<TextBlock Text="Пароль" HorizontalAlignment="Left" Margin="20,5"/>
-				<PasswordBox Name="Password" HorizontalAlignment="Stretch" Margin="15, 0" Password="dfg"/>
+				<PasswordBox Name="Password" HorizontalAlignment="Stretch" Margin="15, 0"/>
 			</StackPanel>
 		</Grid>
 

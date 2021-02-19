@@ -67,7 +67,7 @@ namespace MailSender
             name = null;
             address = null;
             port = 25;
-            isSSL = false;
+            isSSL = true;
             description = null;
             login = null;
             password = null;
