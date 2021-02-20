@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailSender", "MailSender\MailSender.csproj", "{4B53771B-EAA0-4F9F-8119-9DE671DE29AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailSender", "MailSender\MailSender.csproj", "{4B53771B-EAA0-4F9F-8119-9DE671DE29AC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BD624EFA-16C2-413E-8EFC-255E6377B2B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "Tests\ConsoleTest\ConsoleTest.csproj", "{323A5AC5-E3DE-4AD4-8A5D-938E2E7F9F79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTest", "Tests\ConsoleTest\ConsoleTest.csproj", "{323A5AC5-E3DE-4AD4-8A5D-938E2E7F9F79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFTest", "Tests\WPFTest\WPFTest.csproj", "{DE1F724F-B59C-4A1F-8D1A-1A9D8BCBCAE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFTestMailSender", "Tests\WPFTest\WPFTestMailSender.csproj", "{DE1F724F-B59C-4A1F-8D1A-1A9D8BCBCAE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailSender.lib", "MailSender.lib\MailSender.lib.csproj", "{BC7F0DA1-8C98-4017-BCEF-576C558A4350}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{DE1F724F-B59C-4A1F-8D1A-1A9D8BCBCAE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE1F724F-B59C-4A1F-8D1A-1A9D8BCBCAE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE1F724F-B59C-4A1F-8D1A-1A9D8BCBCAE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC7F0DA1-8C98-4017-BCEF-576C558A4350}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC7F0DA1-8C98-4017-BCEF-576C558A4350}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC7F0DA1-8C98-4017-BCEF-576C558A4350}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC7F0DA1-8C98-4017-BCEF-576C558A4350}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

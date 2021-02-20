@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Net;
+using System.Net.Mail;
+using WPFTestMailSender.Services;
+using System.Security;
+using WPFTestMailSender;
 
 namespace WPFTest
 {
@@ -23,6 +16,20 @@ namespace WPFTest
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void SendButton_Click(object sender, RoutedEventArgs e)
+        {
+            EmailSendService yandexSender = new EmailSendService(Login.Text, Password.SecurePassword, EmailTo.Text, EmailHeader.Text, EmailBody.Text);
+            yandexSender.ShowEndWindowMessage += ShowMessage;
+            yandexSender.Send();
+        }
+
+        private static void ShowMessage(string message)
+        {
+            SendEndWindow sendEndWindow = new SendEndWindow();
+            sendEndWindow.ISendEnd.Content = message;
+            sendEndWindow.ShowDialog();
         }
     }
 }
