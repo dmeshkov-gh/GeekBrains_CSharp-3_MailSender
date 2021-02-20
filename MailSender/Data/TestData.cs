@@ -10,15 +10,7 @@ namespace MailSender.Data
 {
     static class TestData
     {
-        public static IList<Server> Servers { get; } = Enumerable.Range(1, 3).Select(s => new Server
-        {
-            Name = $"Сервер #{s}",
-            Address = $"smpt.server-{s}.com",
-            Login = $"Login - {s}",
-            Password = TextEncoder.Encode("password", 4),
-            IsSSLUsed = true
-        })
-        .ToList();
+        public static IList<Server> Servers { get; } 
 
         public static IList<Sender> Senders { get; } = new List<Sender>
         {
