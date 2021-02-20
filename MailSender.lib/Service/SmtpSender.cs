@@ -14,19 +14,19 @@ namespace MailSender.Service
         public delegate void EmailSendServiceHandler(string message);
         public event EmailSendServiceHandler ShowEndWindowMessage;
 
-        private readonly string _address;
-        private readonly int _port;
-        private readonly bool _isSSLUsed;
-        private readonly string _login;
-        private readonly string _password;
+        public string Address { get; set; }
+        public int Port { get; set; }
+        public bool IsSSLUsed { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
 
         public SmtpSender(string address, int port, bool useSSL, string login, string password)
         {
-            _address = address;
-            _port = port;
-            _isSSLUsed = useSSL;
-            _login = login;
-            _password = password;
+            Address = address;
+            Port = port;
+            IsSSLUsed = useSSL;
+            Login = login;
+            Password = password;
         }
 
         public void Send(string from, string to, string title, string message)
@@ -37,13 +37,13 @@ namespace MailSender.Service
                 Body = message
             };
 
-            using SmtpClient client = new SmtpClient(_address, _port)
+            using SmtpClient client = new SmtpClient(Address, Port)
             {
-                EnableSsl = _isSSLUsed,
+                EnableSsl = IsSSLUsed,
                 Credentials = new NetworkCredential
                 {
-                    UserName = _login,
-                    Password = _password
+                    UserName = Login,
+                    Password = Password
                 }
             };
 
