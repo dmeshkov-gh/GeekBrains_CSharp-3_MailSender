@@ -9,8 +9,10 @@
 			 xmlns:models="clr-namespace:MailSender.Models;assembly=MailSender.lib"
              mc:Ignorable="d" 
              d:DesignHeight="25" d:DesignWidth="363">
+	<!--DataContext="{Binding RelativeSource={RelativeSource Self}}"-->
 	<DockPanel>
-		<TextBlock Text="Отправитель:" DockPanel.Dock="Left" VerticalAlignment="Center" Margin="3,0" Width="80" />
+		<TextBlock Text="{Binding Title, RelativeSource={RelativeSource AncestorType=local:ItemsPanel}}" 
+				   DockPanel.Dock="Left" VerticalAlignment="Center" Margin="3,0" Width="80" />
 
 		<StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
 			<StackPanel.Resources>
