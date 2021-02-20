@@ -131,8 +131,8 @@
                                     </Style>
                                 </StackPanel.Resources>
                                 <Button Content="Запланировать"/>
-                                <Button Content="Отправить"/>
-                            </StackPanel>
+								<Button>									<StackPanel Orientation="Horizontal">										<TextBlock Text="Отправить" VerticalAlignment="Center" />										<fa:ImageAwesome Icon="Regular_Envelope" Height="12" Margin="5,0,0,0"/>									</StackPanel>								</Button>
+							</StackPanel>
                             
                         </StackPanel>
                     </GroupBox>

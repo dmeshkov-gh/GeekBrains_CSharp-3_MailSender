@@ -1,4 +1,5 @@
 ﻿using MailSender.Models;
+using MailSender.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,30 +10,15 @@ namespace MailSender.Data
 {
     static class TestData
     {
-        public static IList<Server> Servers { get; } = new List<Server>
+        public static IList<Server> Servers { get; } = Enumerable.Range(1, 3).Select(s => new Server
         {
-            new Server
-            {
-                 //Id = 1,
-                 //Name = "Яндекс",
-                 //Address = "smpt.yandex.com",
-                 //Port = 587,
-                 //IsSSLUsed = true,
-                 //Login = "user@yandex.ru",
-                 //Password = "PassWord",
-            },
-
-            new Server
-            {
-                 //Id = 2,
-                 //Name = "Gmail",
-                 //Address = "smpt.gmail.com",
-                 //Port = 465,
-                 //IsSSLUsed = true,
-                 //Login = "user@gmail.com",
-                 //Password = "PassWord",
-            },
-        };
+            Name = $"Сервер #{s}",
+            Address = $"smpt.server-{s}.com",
+            Login = $"Login - {s}",
+            Password = TextEncoder.Encode("password", 4),
+            IsSSLUsed = true
+        })
+        .ToList();
 
         public static IList<Sender> Senders { get; } = new List<Sender>
         {
