@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows;
+using System;
 
 namespace MailSender.Controls
 {
@@ -13,7 +14,13 @@ namespace MailSender.Controls
                 nameof(Title),
                 typeof(string),
                 typeof(ItemsPanel),
-                new PropertyMetadata(default(string)));
+                new PropertyMetadata("Отправитель:", OnTitleChanged));
+
+        private static void OnTitleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         public string Title 
         { 
             get => (string)GetValue(TitleProperty); 
