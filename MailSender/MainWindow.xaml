@@ -9,9 +9,13 @@
 		xmlns:controls="clr-namespace:MailSender.Controls"
         xmlns:data="clr-namespace:MailSender.Data"
         xmlns:local="clr-namespace:MailSender"
+		xmlns:viewModels="clr-namespace:MailSender.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" MinHeight="450" Width="800" MinWidth="600" 
+        Title="{Binding Title}" Height="450" MinHeight="450" Width="800" MinWidth="600" 
         WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
+	<Window.DataContext>
+		<viewModels:MainWindowViewModel/>
+	</Window.DataContext>
     <DockPanel >
         
         <Menu DockPanel.Dock="Top">
@@ -25,7 +29,7 @@
                 <ResizeGrip/>
             </StatusBarItem>
             <StatusBarItem>
-                <TextBlock Text="Готов..."/>
+                <TextBlock Text="{Binding Status}"/>
             </StatusBarItem>
         </StatusBar>
 
