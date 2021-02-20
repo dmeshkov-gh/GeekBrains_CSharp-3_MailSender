@@ -42,7 +42,7 @@
 					<ToolBarTray>
 						<ToolBar Header="Сервер" Band="0">
                             <ComboBox Name="ServersList" Width="200" Margin="31,0,0,0" SelectedIndex="0"
-                                         ItemsSource="{x:Static data:TestData.Servers}">
+                                         ItemsSource="{Binding Servers}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock>
@@ -59,7 +59,7 @@
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
 
-                            <Button Name="AddServer_Btn" ToolTip="Добавить" Margin="5,0,0,0" fa:Awesome.Content="Solid_Plus" Foreground="Green" Click="AddServer_Btn_Click"/>
+                            <Button ToolTip="Добавить" Margin="5,0,0,0" fa:Awesome.Content="Solid_Plus" Foreground="Green" Command="{Binding LoadServersCommand}"/>
                             <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_Edit" Foreground="Orange"/>
                             <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_TrashAlt" Foreground="Red"/>
                         </ToolBar>

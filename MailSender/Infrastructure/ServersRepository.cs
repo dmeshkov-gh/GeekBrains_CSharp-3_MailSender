@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MailSender.Infrastructure
 {
-    class ServersRepository
+    internal class ServersRepository
     {
         private List<Server> _servers;
 

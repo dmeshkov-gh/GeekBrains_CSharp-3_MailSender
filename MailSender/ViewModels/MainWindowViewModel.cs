@@ -1,7 +1,9 @@
 ﻿using MailSender.Infrastructure;
+using MailSender.lib.Commands;
 using MailSender.Models;
 using MailSender.ViewModels.Base;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace MailSender.ViewModels
 {
@@ -17,6 +19,18 @@ namespace MailSender.ViewModels
 
         public ObservableCollection<Server> Servers { get; } = new();
         public MainWindowViewModel(ServersRepository servers) => _servers = servers;
+
+        #region Commands
+
+        private ICommand _loadServersCommand;
+
+        public ICommand LoadServersCommand => _loadServersCommand ??= new LambdaCommand(OnLoadServersCommandExecuted, CanLoadServersCommandExecute);
+
+        private bool CanLoadServersCommandExecute(object p) => Servers.Count == 0;
+
+        private void OnLoadServersCommandExecuted(object p) => LoadServers();
+
+        #endregion
 
         private void LoadServers()
         {
