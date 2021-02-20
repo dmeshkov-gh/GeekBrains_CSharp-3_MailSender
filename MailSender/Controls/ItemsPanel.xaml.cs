@@ -14,7 +14,7 @@ namespace MailSender.Controls
                 nameof(Title),
                 typeof(string),
                 typeof(ItemsPanel),
-                new PropertyMetadata("Отправитель:", OnTitleChanged));
+                new PropertyMetadata("Отправитель", OnTitleChanged));
 
         private static void OnTitleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
