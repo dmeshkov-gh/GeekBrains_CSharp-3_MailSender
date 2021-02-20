@@ -30,12 +30,14 @@ namespace MailSender.ViewModels
 
         private void OnLoadServersCommandExecuted(object p) => LoadServers();
 
-        #endregion
-
         private void LoadServers()
         {
             foreach (var server in _servers.GetAll())
                 Servers.Add(server);
         }
+
+        #endregion
+
+
     }
 }

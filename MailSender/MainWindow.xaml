@@ -254,8 +254,8 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            
-            <TabItem Header="Статистика">
+
+			<TabItem Header="Статистика" DataContext="{Binding StatisticsViewModel, Source={StaticResource Locator}}">
                 <Grid>
                     <Grid.Resources>
                         <Style TargetType="TextBlock">
@@ -281,13 +281,13 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" Grid.Row="0" Text="Отправлено писем:"/>
-                    <TextBlock Grid.Column="1" Grid.Row="0" Text="0"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding SentMailsCount}"/>
 
                     <TextBlock Grid.Column="0" Grid.Row="1" Text="Всего отправителей:"/>
-                    <TextBlock Grid.Column="1" Grid.Row="1" Text="0"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding SendersCount}"/>
 
                     <TextBlock Grid.Column="0" Grid.Row="2" Text="Всего получателей:"/>
-                    <TextBlock Grid.Column="1" Grid.Row="2" Text="0"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding ReceiversCount}"/>
                 </Grid>
             </TabItem>
         </TabControl>
