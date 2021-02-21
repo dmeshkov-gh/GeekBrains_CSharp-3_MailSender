@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MailSender.lib.Service
 {
-    public class DebugMailService : IMailService
+    public class DebugMailService : IMailSender
     {
         private readonly IStatistics _statistics;
 

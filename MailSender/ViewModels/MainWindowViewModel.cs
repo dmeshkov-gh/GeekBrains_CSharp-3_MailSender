@@ -3,7 +3,6 @@ using MailSender.lib.Commands;
 using MailSender.lib.Interfaces;
 using MailSender.Models;
 using MailSender.ViewModels.Base;
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -15,17 +14,17 @@ namespace MailSender.ViewModels
         private string _title = "Почтовый отправитель";
         private string _status = "Готов...";
 
-        private ServersRepository _servers;
-        private SendersRepository _senders;
-        private ReceiversRepository _receivers;
-        private MessagesRepository _messages;
+        private ServersRepository _serversRepositry;
+        private SendersRepository _sendersRepository;
+        private ReceiversRepository _receiversRepository;
+        private MessagesRepository _messagesRepository;
 
         private Server _selectedServer;
         private Sender _selectedSender;
         private Receiver _selectedReceiver;
         private Message _selectedMessage;
 
-        private readonly IMailService _mailService;
+        private readonly IMailSender _mailService;
 
         public string Title { get => _title; set => Set(ref _title, value); }
 
@@ -41,12 +40,12 @@ namespace MailSender.ViewModels
         public Receiver SelectedReceiver { get => _selectedReceiver; set => Set(ref _selectedReceiver, value); }
         public Message SelectedMessage { get => _selectedMessage; set => Set(ref _selectedMessage, value); }
 
-        public MainWindowViewModel(ServersRepository servers, SendersRepository senders, ReceiversRepository receivers, MessagesRepository messages, IMailService mailService)
+        public MainWindowViewModel(ServersRepository servers, SendersRepository senders, ReceiversRepository receivers, MessagesRepository messages, IMailSender mailService)
         {
-            _servers = servers;
-            _senders = senders;
-            _receivers = receivers;
-            _messages = messages;
+            _serversRepositry = servers;
+            _sendersRepository = senders;
+            _receiversRepository = receivers;
+            _messagesRepository = messages;
             _mailService = mailService;
         }
 
@@ -66,25 +65,25 @@ namespace MailSender.ViewModels
 
         private void LoadMessages()
         {
-            foreach (var message in _messages.GetAll())
+            foreach (var message in _messagesRepository.GetAll())
                 Messages.Add(message);
         }
 
         private void LoadReceivers()
         {
-            foreach (var receiver in _receivers.GetAll())
+            foreach (var receiver in _receiversRepository.GetAll())
                 Receivers.Add(receiver);
         }
 
         private void LoadSenders()
         {
-            foreach (var sender in _senders.GetAll())
+            foreach (var sender in _sendersRepository.GetAll())
                 Senders.Add(sender);
         }
 
         private void LoadServers()
         {
-            foreach (var server in _servers.GetAll())
+            foreach (var server in _serversRepositry.GetAll())
                 Servers.Add(server);
         }
 
