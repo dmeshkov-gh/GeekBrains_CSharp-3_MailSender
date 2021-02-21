@@ -30,7 +30,7 @@
 		</StackPanel>
 
 		<ComboBox MinWidth="200" Name="SendersList" SelectedIndex="0" VerticalAlignment="Center"
-				  ItemsSource="{Binding Senders}">
+				  ItemsSource="{Binding Senders}" SelectedItem="{Binding SelectedSender}">
 			<ComboBox.ItemTemplate>
 				<DataTemplate>
 					<TextBlock ToolTip="{Binding Description}">

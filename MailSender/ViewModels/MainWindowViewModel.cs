@@ -14,10 +14,17 @@ namespace MailSender.ViewModels
     {
         private string _title = "Почтовый отправитель";
         private string _status = "Готов...";
+
         private ServersRepository _servers;
         private SendersRepository _senders;
         private ReceiversRepository _receivers;
         private MessagesRepository _messages;
+
+        private Server _selectedServer;
+        private Sender _selectedSender;
+        private Receiver _selectedReceiver;
+        private Message _selectedMessage;
+
         private readonly IMailService _mailService;
 
         public string Title { get => _title; set => Set(ref _title, value); }
@@ -28,6 +35,11 @@ namespace MailSender.ViewModels
         public ObservableCollection<Sender> Senders { get; } = new();
         public ObservableCollection<Receiver> Receivers { get; } = new();
         public ObservableCollection<Message> Messages { get; } = new();
+
+        public Server SelectedServer { get => _selectedServer; set => Set(ref _selectedServer, value); }
+        public Sender SelectedSender { get => _selectedSender; set => Set(ref _selectedSender, value); }
+        public Receiver SelectedReceiver { get => _selectedReceiver; set => Set(ref _selectedReceiver, value); }
+        public Message SelectedMessage { get => _selectedMessage; set => Set(ref _selectedMessage, value); }
 
         public MainWindowViewModel(ServersRepository servers, SendersRepository senders, ReceiversRepository receivers, MessagesRepository messages, IMailService mailService)
         {
@@ -148,6 +160,22 @@ namespace MailSender.ViewModels
             server.Login = login;
             server.Password = password;
             server.Description = description;
+        }
+
+        //Удалить сервер
+        private ICommand _deleteServerCommand;
+
+        public ICommand DeleteServerCommand => _deleteServerCommand ??= new LambdaCommand(OnDeleteServerCommandExecuted, CanDeleteServerCommandExecute);
+
+        private bool CanDeleteServerCommandExecute(object p) => p is Server;
+
+        private void OnDeleteServerCommandExecuted(object p) => DeleteServer(p);
+
+        private void DeleteServer(object p)
+        {
+            if (!(p is Server server)) return;
+
+            Servers.Remove(server);
         }
         #endregion
 
