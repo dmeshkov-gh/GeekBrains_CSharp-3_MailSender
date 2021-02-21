@@ -5,6 +5,7 @@ using MailSender.Models;
 using MailSender.ViewModels.Base;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace MailSender.ViewModels
@@ -38,7 +39,7 @@ namespace MailSender.ViewModels
         }
 
         #region Commands
-        //Загрузить сервера
+        //Загрузить сервера, отправителей, получателей и письма
         private ICommand _loadDataCommand;
 
         public ICommand LoadDataCommand => _loadDataCommand ??= new LambdaCommand(OnLoadDataCommandExecuted);
@@ -101,7 +102,7 @@ namespace MailSender.ViewModels
 
             Server server = new Server
             {
-                Id = 1,
+                Id = Servers.DefaultIfEmpty().Max(s => s.Id) + 1,
                 Name = name,
                 Address = address,
                 Port = port,
@@ -112,6 +113,41 @@ namespace MailSender.ViewModels
             };
 
             Servers.Add(server);
+        }
+
+        //Редактировать сервер
+        private ICommand _editServerCommand;
+
+        public ICommand EditServerCommand => _editServerCommand ??= new LambdaCommand(OnEditServerCommandExecuted, CanEditServerCommandExecute);
+
+        private bool CanEditServerCommandExecute(object p) => p is Server;
+
+        private void OnEditServerCommandExecuted(object p) => EditServer(p);
+
+        private void EditServer(object p)
+        {
+            if (!(p is Server server)) return;
+
+            string name = server.Name;
+            string address = server.Address;
+            int port = server.Port;
+            bool isSSL = server.IsSSLUsed;
+            string login = server.Login;
+            var password = server.Password;
+            string description = server.Description;
+
+
+            if (!ServerEditDialog.ShowDialog("Редактирование сервера", ref name, ref address, ref port,
+            ref isSSL, ref login, ref password, ref description))
+                return;
+
+            server.Name = name;
+            server.Address = address;
+            server.Port = port;
+            server.IsSSLUsed = isSSL;
+            server.Login = login;
+            server.Password = password;
+            server.Description = description;
         }
         #endregion
 

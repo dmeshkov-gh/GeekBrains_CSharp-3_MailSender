@@ -26,30 +26,5 @@ namespace MailSender
 
 
         private void Scheduler_Btn_Click(object sender, RoutedEventArgs e) => Schedule_TabItem.Focus();
-
-        //private void AddServer_Btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (!ServerEditDialog.Create(out string name, out string address, out int port,
-        //    out bool isSSL, out string login, out var password, out string description)) 
-        //        return;
-
-        //    Server server = new Server
-        //    {
-        //        Id = TestData.Servers.DefaultIfEmpty().Max(s => s.Id) + 1,
-        //        Name = name,
-        //        Address = address,
-        //        Port = port,
-        //        IsSSLUsed = isSSL,
-        //        Description = description,
-        //        Login = login,
-        //        Password = password
-        //    };
-
-        //    TestData.Servers.Add(server);
-
-        //    ServersList.ItemsSource = null;
-        //    ServersList.ItemsSource = TestData.Servers;
-        //    ServersList.SelectedItem = server;
-        //}
     }
 }

@@ -66,7 +66,7 @@
                             </ComboBox>
 
                             <Button ToolTip="Добавить" Margin="5,0,0,0" fa:Awesome.Content="Solid_Plus" Foreground="Green" Command="{Binding AddServerCommand}"/>
-                            <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_Edit" Foreground="Orange"/>
+                            <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_Edit" Foreground="Orange" Command="{Binding EditServerCommand}"/>
                             <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_TrashAlt" Foreground="Red"/>
                         </ToolBar>
 
