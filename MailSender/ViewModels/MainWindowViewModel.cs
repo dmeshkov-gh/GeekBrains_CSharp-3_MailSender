@@ -3,6 +3,7 @@ using MailSender.lib.Commands;
 using MailSender.lib.Interfaces;
 using MailSender.Models;
 using MailSender.ViewModels.Base;
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -51,6 +52,35 @@ namespace MailSender.ViewModels
 
         private void OnSendEmailCommandExecuted(object p) => _mailService.SendEmail("Сергеев", "Артемов", "Заголовок", "Тело письма");
 
+
+        private ICommand _addServerCommand;
+
+        public ICommand AddServerCommand => _addServerCommand ??= new LambdaCommand(OnAddServerCommandExecuted, CanAddServerCommandExecute);
+
+        private bool CanAddServerCommandExecute(object p) => true;
+
+        private void OnAddServerCommandExecuted(object p) => AddServer();
+
+        private void AddServer()
+        {
+            if (!ServerEditDialog.Create(out string name, out string address, out int port,
+            out bool isSSL, out string login, out var password, out string description))
+                return;
+
+            Server server = new Server
+            {
+                Id = 1,
+                Name = name,
+                Address = address,
+                Port = port,
+                IsSSLUsed = isSSL,
+                Description = description,
+                Login = login,
+                Password = password
+            };
+
+            _servers.Add(server);
+        }
         #endregion
 
 
