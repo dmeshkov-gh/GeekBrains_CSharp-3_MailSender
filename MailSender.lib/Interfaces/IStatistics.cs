@@ -1,7 +1,10 @@
-﻿namespace MailSender.lib.Interfaces
+﻿using System;
+
+namespace MailSender.lib.Interfaces
 {
     public interface IStatistics
     {
+        event EventHandler SentMailCountChanged;
         int SentMailsCount { get; }
 
         int SendersCount { get; }

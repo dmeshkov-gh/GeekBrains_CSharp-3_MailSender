@@ -1,5 +1,6 @@
 ﻿using MailSender.Data;
 using MailSender.lib.Interfaces;
+using System;
 
 namespace MailSender.Infrastructure
 {
@@ -12,9 +13,12 @@ namespace MailSender.Infrastructure
 
         public int ReceiversCount => TestData.Receivers.Count;
 
+        public event EventHandler SentMailCountChanged;
+
         public void MailSended()
         {
             _sentMailCount++;
+            SentMailCountChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MailSender.Service
 {
-    public class SmtpSender
+    public class MailSendService
     {
         public delegate void EmailSendServiceHandler(string message);
         public event EmailSendServiceHandler ShowEndWindowMessage;
@@ -20,7 +20,7 @@ namespace MailSender.Service
         public string Login { get; set; }
         public string Password { get; set; }
 
-        public SmtpSender(string address, int port, bool useSSL, string login, string password)
+        public MailSendService(string address, int port, bool useSSL, string login, string password)
         {
             Address = address;
             Port = port;

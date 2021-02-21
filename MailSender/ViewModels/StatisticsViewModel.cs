@@ -21,6 +21,8 @@ namespace MailSender.ViewModels
         public StatisticsViewModel(IStatistics statistics)
         {
             _statistics = statistics;
+
+            statistics.SentMailCountChanged += (_, _) => OnPropertyChanged(nameof(SentMailsCount));
         }
     }
 }
