@@ -28,7 +28,7 @@ namespace MailSender.ViewModels
         }
 
         #region Commands
-
+        //Загрузить сервера
         private ICommand _loadServersCommand;
 
         public ICommand LoadServersCommand => _loadServersCommand ??= new LambdaCommand(OnLoadServersCommandExecuted, CanLoadServersCommandExecute);
@@ -43,7 +43,7 @@ namespace MailSender.ViewModels
                 Servers.Add(server);
         }
 
-
+        //Отправить письмо
         private ICommand _sendEmailCommand;
 
         public ICommand SendEmailCommand => _sendEmailCommand ??= new LambdaCommand(OnSendEmailCommandExecuted, CanSendEmailCommandExecute);
@@ -52,7 +52,7 @@ namespace MailSender.ViewModels
 
         private void OnSendEmailCommandExecuted(object p) => _mailService.SendEmail("Сергеев", "Артемов", "Заголовок", "Тело письма");
 
-
+        //Добавить сервер
         private ICommand _addServerCommand;
 
         public ICommand AddServerCommand => _addServerCommand ??= new LambdaCommand(OnAddServerCommandExecuted, CanAddServerCommandExecute);
