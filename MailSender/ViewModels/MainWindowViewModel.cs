@@ -14,6 +14,9 @@ namespace MailSender.ViewModels
         private string _title = "Почтовый отправитель";
         private string _status = "Готов...";
         private ServersRepository _servers;
+        private SendersRepository _senders;
+        private ReceiversRepository _receivers;
+        private MessagesRepository _messages;
         private readonly IMailService _mailService;
 
         public string Title { get => _title; set => Set(ref _title, value); }
@@ -21,9 +24,16 @@ namespace MailSender.ViewModels
         public string Status { get => _status; set => Set(ref _status, value); }
 
         public ObservableCollection<Server> Servers { get; } = new();
-        public MainWindowViewModel(ServersRepository servers, IMailService mailService)
+        public ObservableCollection<Sender> Senders { get; } = new();
+        public ObservableCollection<Receiver> Receivers { get; } = new();
+        public ObservableCollection<Message> Messages { get; } = new();
+
+        public MainWindowViewModel(ServersRepository servers, SendersRepository senders, ReceiversRepository receivers, MessagesRepository messages, IMailService mailService)
         {
             _servers = servers;
+            _senders = senders;
+            _receivers = receivers;
+            _messages = messages;
             _mailService = mailService;
         }
 
@@ -36,6 +46,27 @@ namespace MailSender.ViewModels
         private void OnLoadDataCommandExecuted(object p)
         {
             LoadServers();
+            LoadSenders();
+            LoadReceivers();
+            LoadMessages();
+        }
+
+        private void LoadMessages()
+        {
+            foreach (var message in _messages.GetAll())
+                Messages.Add(message);
+        }
+
+        private void LoadReceivers()
+        {
+            foreach (var receiver in _receivers.GetAll())
+                Receivers.Add(receiver);
+        }
+
+        private void LoadSenders()
+        {
+            foreach (var sender in _senders.GetAll())
+                Senders.Add(sender);
         }
 
         private void LoadServers()
