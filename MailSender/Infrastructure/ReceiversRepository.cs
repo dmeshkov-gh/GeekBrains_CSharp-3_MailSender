@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MailSender.Infrastructure
 {
-    class ReceiversRepository
+    internal class ReceiversRepository
     {
         private List<Receiver> _receivers;
 

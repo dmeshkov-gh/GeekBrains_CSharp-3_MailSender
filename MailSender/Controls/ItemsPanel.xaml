@@ -8,7 +8,8 @@
 			 xmlns:data="clr-namespace:MailSender.Data"
 			 xmlns:models="clr-namespace:MailSender.Models;assembly=MailSender.lib"
              mc:Ignorable="d" 
-             d:DesignHeight="25" d:DesignWidth="363">
+             d:DesignHeight="25" d:DesignWidth="363"
+			 DataContext="{Binding MainWindowViewModel, Source={StaticResource Locator}}">
 	<!--DataContext="{Binding RelativeSource={RelativeSource Self}}"-->
 	<DockPanel>
 		<TextBlock Text="{Binding Title, RelativeSource={RelativeSource AncestorType=local:ItemsPanel}}" 
@@ -29,7 +30,7 @@
 		</StackPanel>
 
 		<ComboBox MinWidth="200" Name="SendersList" SelectedIndex="0" VerticalAlignment="Center"
-                      ItemsSource="{x:Static data:TestData.Senders}">
+				  ItemsSource="{Binding Senders}">
 			<ComboBox.ItemTemplate>
 				<DataTemplate>
 					<TextBlock ToolTip="{Binding Description}">

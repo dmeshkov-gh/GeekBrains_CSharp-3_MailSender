@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace MailSender.Infrastructure
 {
-    class MessagesRepository
+    internal class MessagesRepository
     {
         private List<Message> _messages;
 

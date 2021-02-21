@@ -9,9 +9,10 @@ namespace MailSender.Infrastructure
         private int _sentMailCount;
         public int SentMailsCount => _sentMailCount;
 
-        public int SendersCount => TestData.Senders.Count;
+        public int SendersCount => 0; //исправить
 
-        public int ReceiversCount => TestData.Receivers.Count;
+        public int ReceiversCount => 0; //исправить
+            //TestData.Receivers.Count;
 
         public event EventHandler SentMailCountChanged;
 
