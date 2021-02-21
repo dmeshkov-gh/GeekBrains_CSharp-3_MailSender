@@ -131,7 +131,7 @@
                                     </Style>
                                 </StackPanel.Resources>
                                 <Button Content="Запланировать"/>
-								<Button Command="{Binding SendEmailCommand}">
+								<Button Command="{Binding SendMessageCommand}">
 									<StackPanel Orientation="Horizontal">
 										<TextBlock Text="Отправить" VerticalAlignment="Center" />
 										<fa:ImageAwesome Icon="Regular_Envelope" Height="12" Margin="5,0,0,0"/>

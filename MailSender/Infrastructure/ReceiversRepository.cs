@@ -14,8 +14,8 @@ namespace MailSender.Infrastructure
                 new Receiver
                 {
                     Id = 1,
-                    Name = "Иванов",
-                    Address = "ivanov@server.ru",
+                    Name = "Мешков",
+                    Address = "dm_91@bk.ru",
                     Description = "Почта для Иванова"
                 },
 

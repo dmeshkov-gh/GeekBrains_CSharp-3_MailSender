@@ -1,67 +1,70 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using MailSender.lib.Interfaces;
+using System;
 using System.Net;
 using System.Net.Mail;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MailSender.Service
 {
-    public class MailSendService
+    public class MailSendService : IMailService
     {
-        public delegate void EmailSendServiceHandler(string message);
-        public event EmailSendServiceHandler ShowEndWindowMessage;
+        public IMailSender GetSender(string address, int port, bool useSSL, string login, string password) 
+            => new MailSender(address, port, useSSL, login, password);
 
-        public string Address { get; set; }
-        public int Port { get; set; }
-        public bool IsSSLUsed { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-
-        public MailSendService(string address, int port, bool useSSL, string login, string password)
+        private class MailSender : IMailSender
         {
-            Address = address;
-            Port = port;
-            IsSSLUsed = useSSL;
-            Login = login;
-            Password = password;
-        }
+            public delegate void EmailSendServiceHandler(string message);
+            public event EmailSendServiceHandler ShowEndWindowMessage;
 
-        public void Send(string from, string to, string title, string message)
-        {
-            using MailMessage mailMessage = new MailMessage(from, to)
-            {
-                Subject = title,
-                Body = message
-            };
+            private string _address;
+            private int _port;
+            private bool _isSSL;
+            private string _login;
+            private string _password;
 
-            using SmtpClient client = new SmtpClient(Address, Port)
+            public MailSender(string address, int port, bool useSSL, string login, string password)
             {
-                EnableSsl = IsSSLUsed,
-                Credentials = new NetworkCredential
+                _address = address;
+                _port = port;
+                _isSSL = useSSL;
+                _login = login;
+                _password = password;
+            }
+
+            public void SendEmail(string from, string to, string title, string message)
+            {
+                using MailMessage mailMessage = new MailMessage(from, to)
                 {
-                    UserName = Login,
-                    Password = Password
+                    Subject = title,
+                    Body = message
+                };
+
+                using SmtpClient client = new SmtpClient(_address, _port)
+                {
+                    EnableSsl = _isSSL,
+                    Credentials = new NetworkCredential
+                    {
+                        UserName = _login,
+                        Password = _password
+                    }
+                };
+
+                try
+                {
+                    client.Send(mailMessage);
+                    ShowEndWindowMessage?.Invoke("Почта успешно отправлена!");
+
                 }
-            };
-
-            try
-            {
-                client.Send(mailMessage);
-                ShowEndWindowMessage?.Invoke("Почта успешно отправлена!");
-
-            }
-            catch (SmtpException)
-            {
-                ShowEndWindowMessage?.Invoke("Ошибка авторизации");
-            }
-            catch (TimeoutException)
-            {
-                ShowEndWindowMessage?.Invoke("Ошибка адреса сервера");
+                catch (SmtpException)
+                {
+                    ShowEndWindowMessage?.Invoke("Ошибка авторизации");
+                }
+                catch (TimeoutException)
+                {
+                    ShowEndWindowMessage?.Invoke("Ошибка адреса сервера");
+                }
             }
         }
+
 
     }
 }

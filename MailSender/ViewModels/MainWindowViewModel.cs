@@ -24,7 +24,7 @@ namespace MailSender.ViewModels
         private Receiver _selectedReceiver;
         private Message _selectedMessage;
 
-        private readonly IMailSender _mailService;
+        private readonly IMailService _mailService;
 
         public string Title { get => _title; set => Set(ref _title, value); }
 
@@ -40,7 +40,7 @@ namespace MailSender.ViewModels
         public Receiver SelectedReceiver { get => _selectedReceiver; set => Set(ref _selectedReceiver, value); }
         public Message SelectedMessage { get => _selectedMessage; set => Set(ref _selectedMessage, value); }
 
-        public MainWindowViewModel(ServersRepository servers, SendersRepository senders, ReceiversRepository receivers, MessagesRepository messages, IMailSender mailService)
+        public MainWindowViewModel(ServersRepository servers, SendersRepository senders, ReceiversRepository receivers, MessagesRepository messages, IMailService mailService)
         {
             _serversRepositry = servers;
             _sendersRepository = senders;
@@ -87,14 +87,6 @@ namespace MailSender.ViewModels
                 Servers.Add(server);
         }
 
-        //Отправить письмо
-        private ICommand _sendEmailCommand;
-
-        public ICommand SendEmailCommand => _sendEmailCommand ??= new LambdaCommand(OnSendEmailCommandExecuted, CanSendEmailCommandExecute);
-
-        private bool CanSendEmailCommandExecute(object p) => true;
-
-        private void OnSendEmailCommandExecuted(object p) => _mailService.SendEmail("Сергеев", "Артемов", "Заголовок", "Тело письма");
 
         //Добавить сервер
         private ICommand _addServerCommand;
@@ -175,6 +167,33 @@ namespace MailSender.ViewModels
             if (!(p is Server server)) return;
 
             Servers.Remove(server);
+        }
+
+        //Отправить сообщение
+
+        private ICommand _sendMessageCommand;
+
+        public ICommand SendMessageCommand => _sendMessageCommand ??= new LambdaCommand(OnSendMessageCommandExecuted, CanSendMessageCommandExecute);
+
+        private bool CanSendMessageCommandExecute(object p)
+        {
+            return SelectedServer != null
+                 && SelectedSender != null
+                 && SelectedReceiver != null
+                 && SelectedMessage != null;
+        }
+
+        private void OnSendMessageCommandExecuted(object p) => SendMessage();
+
+        private void SendMessage()
+        {
+            var server = SelectedServer;
+            var client = _mailService.GetSender(server.Address, server.Port, server.IsSSLUsed, server.Login, server.Password);
+            var sender = SelectedSender;
+            var receiver = SelectedReceiver;
+            var message = SelectedMessage;
+
+            client.SendEmail(sender.Address, receiver.Address, message.Title, message.Body);
         }
         #endregion
 
