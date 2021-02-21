@@ -10,10 +10,16 @@
         xmlns:data="clr-namespace:MailSender.Data"
         xmlns:local="clr-namespace:MailSender"
 		xmlns:viewModels="clr-namespace:MailSender.ViewModels"
+		xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-		DataContext="{Binding MainWindowViewModel, Source={StaticResource Locator}}"
         Title="{Binding Title}" Height="450" MinHeight="450" Width="800" MinWidth="600" 
-        WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip">
+        WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip"
+		DataContext="{Binding MainWindowViewModel, Source={StaticResource Locator}}">
+	<b:Interaction.Triggers>
+		<b:EventTrigger EventName="Loaded">
+			<b:InvokeCommandAction Command="{Binding LoadDataCommand}"/>
+		</b:EventTrigger>
+	</b:Interaction.Triggers>
 	<DockPanel >
         
         <Menu DockPanel.Dock="Top">

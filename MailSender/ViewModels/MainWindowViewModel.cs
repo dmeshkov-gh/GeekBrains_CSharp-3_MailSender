@@ -29,13 +29,14 @@ namespace MailSender.ViewModels
 
         #region Commands
         //Загрузить сервера
-        private ICommand _loadServersCommand;
+        private ICommand _loadDataCommand;
 
-        public ICommand LoadServersCommand => _loadServersCommand ??= new LambdaCommand(OnLoadServersCommandExecuted, CanLoadServersCommandExecute);
+        public ICommand LoadDataCommand => _loadDataCommand ??= new LambdaCommand(OnLoadDataCommandExecuted);
 
-        private bool CanLoadServersCommandExecute(object p) => Servers.Count == 0;
-
-        private void OnLoadServersCommandExecuted(object p) => LoadServers();
+        private void OnLoadDataCommandExecuted(object p)
+        {
+            LoadServers();
+        }
 
         private void LoadServers()
         {
@@ -79,7 +80,7 @@ namespace MailSender.ViewModels
                 Password = password
             };
 
-            _servers.Add(server);
+            Servers.Add(server);
         }
         #endregion
 
