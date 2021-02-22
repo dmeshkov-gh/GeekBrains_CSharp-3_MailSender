@@ -46,8 +46,12 @@
                     </Grid.RowDefinitions>
 
 					<ToolBarTray>
-						<ToolBar Header="Сервер" Band="0">
-                            <ComboBox Name="ServersList" Width="200" Margin="31,0,0,0" SelectedIndex="0"
+						<ToolBar Band="0">
+							<controls:ItemsPanel Title="Сервера"
+												 AddCommand="{Binding AddServerCommand}"
+												 EditCommand="{Binding EditServerCommand}"
+												 DeleteCommand="{Binding DeleteServerCommand}"/>
+							<!--<ComboBox Name="ServersList" Width="200" Margin="31,0,0,0" SelectedIndex="0"
                                          ItemsSource="{Binding Servers}" SelectedItem="{Binding SelectedServer}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -70,11 +74,15 @@
                             <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_Edit" Foreground="Orange" 
 									Command="{Binding EditServerCommand}" CommandParameter="{Binding SelectedServer}"/>
                             <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_TrashAlt" Foreground="Red" 
-									Command="{Binding DeleteServerCommand}" CommandParameter="{Binding SelectedServer}"/>
+									Command="{Binding DeleteServerCommand}" CommandParameter="{Binding SelectedServer}"/>-->
                         </ToolBar>
 
 						<ToolBar Band="1">
-							<controls:ItemsPanel/>
+							<controls:ItemsPanel Title="Отправители" 
+												 AddCommand="{Binding AddSenderCommand}"
+												 EditCommand="{Binding EditSenderCommand}"
+												 DeleteCommand="{Binding DeleteSenderCommand}"
+												 SelectedUser="{Binding SelectedSender}"/>
 						</ToolBar>
                         
                         <ToolBar Margin ="7,0,0,0" Band="0">

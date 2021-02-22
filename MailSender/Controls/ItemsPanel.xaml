@@ -25,16 +25,20 @@
 				</Style>
 			</StackPanel.Resources>
 			<Button ToolTip="Добавить" fa:Awesome.Content="Solid_Plus" Foreground="Green" 
-					Command="{Binding AddSenderCommand}" CommandParameter="{Binding SelectedSender}"/>
+					Command="{Binding AddCommand, RelativeSource={RelativeSource AncestorType=local:ItemsPanel}}" 
+					CommandParameter="{Binding SelectedUser, RelativeSource={RelativeSource AncestorType=local:ItemsPanel}}"/>
 			<Button ToolTip="Редактировать" fa:Awesome.Content="Solid_UserEdit" Foreground="Orange"
-					Command="{Binding EditSenderCommand}" CommandParameter="{Binding SelectedSender}"/>
+					Command="{Binding EditCommand, RelativeSource={RelativeSource AncestorType=local:ItemsPanel}}" 
+					CommandParameter="{Binding SelectedUser, RelativeSource={RelativeSource AncestorType=local:ItemsPanel}}"/>
 			<Button ToolTip="Редактировать" fa:Awesome.Content="Solid_TrashAlt" Foreground="Red"
-					Command="{Binding DeleteSenderCommand}" CommandParameter="{Binding SelectedSender}"/>
+					Command="{Binding DeleteCommand, RelativeSource={RelativeSource AncestorType=local:ItemsPanel}}" 
+					CommandParameter="{Binding SelectedUser, RelativeSource={RelativeSource AncestorType=local:ItemsPanel}}"/>
 		</StackPanel>
 
 		<ComboBox MinWidth="200" Name="SendersList" SelectedIndex="0" VerticalAlignment="Center"
-				  ItemsSource="{Binding Senders}" SelectedItem="{Binding SelectedSender}">
-			<ComboBox.ItemTemplate>
+				  ItemsSource="{Binding Senders}" 
+				  SelectedItem="{Binding SelectedUser, RelativeSource={RelativeSource AncestorType=local:ItemsPanel}}">
+			<ComboBox.ItemTemplate>	
 				<DataTemplate>
 					<TextBlock ToolTip="{Binding Description}">
                         <TextBlock Text="{Binding Address}"/>
