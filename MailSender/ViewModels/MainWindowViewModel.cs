@@ -190,7 +190,8 @@ namespace MailSender.ViewModels
 
         private void AddSender(object p)
         {
-            if (!EditUserWindow.Create(out int id, out string name, out string address, out string description))
+            int nextId = Senders.DefaultIfEmpty().Max(s => s.Id) + 1;
+            if (!EditUserWindow.Create(nextId, out int id, out string name, out string address, out string description))
                 return;
 
             Sender sender = new Sender

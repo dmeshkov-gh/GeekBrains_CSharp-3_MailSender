@@ -11,9 +11,9 @@ namespace MailSender
             InitializeComponent();
         }
 
-        public static bool Create(out int id, out string name, out string address, out string description)
+        public static bool Create(int nextId, out int id, out string name, out string address, out string description)
         {
-            id = 4; //Исправить!!! 
+            id = nextId;
             name = null;
             address = null;
             description = "-";
