@@ -19,13 +19,13 @@ namespace MailSender.Infrastructure
         public event EventHandler SendersCountChanged;
         public event EventHandler ReceiversCountChanged;
 
-        public void GetReceivers()
+        public void GetReceiver()
         {
             _receiversCount++;
             ReceiversCountChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        public void GetSenders()
+        public void GetSender()
         {
             _sendersCount++;
             SendersCountChanged?.Invoke(this, EventArgs.Empty);

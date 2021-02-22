@@ -77,7 +77,7 @@ namespace MailSender.ViewModels
             foreach (var receiver in _receiversRepository.GetAll())
             {
                 Receivers.Add(receiver);
-                _statistics.GetReceivers();
+                _statistics.GetReceiver();
             }
         }
 
@@ -86,7 +86,7 @@ namespace MailSender.ViewModels
             foreach (var sender in _sendersRepository.GetAll())
             {
                 Senders.Add(sender);
-                _statistics.GetSenders();
+                _statistics.GetSender();
             }      
         }
 
