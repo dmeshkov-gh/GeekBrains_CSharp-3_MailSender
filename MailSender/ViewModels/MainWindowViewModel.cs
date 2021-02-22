@@ -75,13 +75,19 @@ namespace MailSender.ViewModels
         private void LoadReceivers()
         {
             foreach (var receiver in _receiversRepository.GetAll())
+            {
                 Receivers.Add(receiver);
+                _statistics.GetReceivers();
+            }
         }
 
         private void LoadSenders()
         {
             foreach (var sender in _sendersRepository.GetAll())
+            {
                 Senders.Add(sender);
+                _statistics.GetSenders();
+            }      
         }
 
         private void LoadServers()

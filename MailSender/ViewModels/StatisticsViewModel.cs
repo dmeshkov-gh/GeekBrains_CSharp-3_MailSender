@@ -23,6 +23,8 @@ namespace MailSender.ViewModels
             _statistics = statistics;
 
             statistics.SentMailCountChanged += (_, _) => OnPropertyChanged(nameof(SentMailsCount));
+            statistics.SendersCountChanged += (_, _) => OnPropertyChanged(nameof(SendersCount));
+            statistics.ReceiversCountChanged += (_, _) => OnPropertyChanged(nameof(ReceiversCount));
         }
     }
 }
