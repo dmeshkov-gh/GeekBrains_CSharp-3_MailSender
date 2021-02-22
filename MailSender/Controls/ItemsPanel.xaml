@@ -24,7 +24,8 @@
 					<Setter Property="Width" Value="15"/>
 				</Style>
 			</StackPanel.Resources>
-			<Button ToolTip="Добавить" fa:Awesome.Content="Solid_Plus" Foreground="Green"/>
+			<Button ToolTip="Добавить" fa:Awesome.Content="Solid_Plus" Foreground="Green" 
+					Command="{Binding AddSenderCommand}" CommandParameter="{Binding SelectedSender}"/>
 			<Button ToolTip="Редактировать" fa:Awesome.Content="Solid_UserEdit" Foreground="Orange"/>
 			<Button ToolTip="Редактировать" fa:Awesome.Content="Solid_TrashAlt" Foreground="Red"/>
 		</StackPanel>

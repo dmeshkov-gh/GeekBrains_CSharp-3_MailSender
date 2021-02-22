@@ -184,15 +184,24 @@ namespace MailSender.ViewModels
 
         public ICommand AddSenderCommand => _addSenderCommand ??= new LambdaCommand(OnAddSenderCommandExecuted, CanAddSenderCommandExecute);
 
-        private bool CanAddSenderCommandExecute(object p) => p is Server;
+        private bool CanAddSenderCommandExecute(object p) => p is Sender;
 
         private void OnAddSenderCommandExecuted(object p) => AddSender(p);
 
         private void AddSender(object p)
         {
-            if (!(p is Server server)) return;
+            if (!EditUserWindow.Create(out int id, out string name, out string address, out string description))
+                return;
 
-            Servers.Remove(server);
+            Sender sender = new Sender
+            {
+                Id = Senders.DefaultIfEmpty().Max(s => s.Id) + 1,
+                Name = name,
+                Address = address,
+                Description = description
+            };
+
+            Senders.Add(sender);
         }
 
         //Отправить сообщение

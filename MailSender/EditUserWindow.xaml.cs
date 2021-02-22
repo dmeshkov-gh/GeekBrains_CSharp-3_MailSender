@@ -1,27 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace MailSender
 {
-    /// <summary>
-    /// Interaction logic for EditUserWindow.xaml
-    /// </summary>
     public partial class EditUserWindow : Window
     {
-        public EditUserWindow()
+        private EditUserWindow()
         {
             InitializeComponent();
+        }
+
+        public static bool Create(out int id, out string name, out string address, out string description)
+        {
+            id = 4; //Исправить!!! 
+            name = null;
+            address = null;
+            description = "-";
+
+            return ShowDialog("Добавить пользователя", ref id, ref name, ref address, ref description);
+        }
+
+        private static bool ShowDialog(string title, ref int id, ref string name, ref string address, ref string description)
+        {
+            EditUserWindow window = new EditUserWindow
+            {
+                Title = title,
+                Id = { Text = id.ToString() },
+                Name = { Text = name },
+                Address = { Text = address },
+                Description = { Text = description },
+
+                Owner = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window.IsActive)
+            };
+
+            if (window.ShowDialog() != true) return false;
+
+            id = int.Parse(window.Id.Text);
+            name = window.Name.Text;
+            address = window.Address.Text;
+            description = window.Description.Text;
+
+            return true;
+        }
+
+        private void Cancel_Btn_Click(object sender, RoutedEventArgs e) => Close();
+
+        private void Ok_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = !((Button)e.OriginalSource).IsCancel;
+            Close();
         }
     }
 }
