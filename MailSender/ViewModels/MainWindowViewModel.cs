@@ -178,8 +178,24 @@ namespace MailSender.ViewModels
             Servers.Remove(server);
         }
 
-        //Отправить сообщение
 
+        //Добавить отправителя
+        private ICommand _addSenderCommand;
+
+        public ICommand AddSenderCommand => _addSenderCommand ??= new LambdaCommand(OnAddSenderCommandExecuted, CanAddSenderCommandExecute);
+
+        private bool CanAddSenderCommandExecute(object p) => p is Server;
+
+        private void OnAddSenderCommandExecuted(object p) => AddSender(p);
+
+        private void AddSender(object p)
+        {
+            if (!(p is Server server)) return;
+
+            Servers.Remove(server);
+        }
+
+        //Отправить сообщение
         private ICommand _sendMessageCommand;
 
         public ICommand SendMessageCommand => _sendMessageCommand ??= new LambdaCommand(OnSendMessageCommandExecuted, CanSendMessageCommandExecute);
