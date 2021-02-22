@@ -20,6 +20,15 @@ namespace MailSender.Infrastructure
                 IsSSLUsed = true
             })
             .ToList();
+
+            _servers.Add(new Server
+            {
+                Name = $"Yandex",
+                Address = $"smtp.yandex.com",
+                Login = $"test-email-geekbrains@yandex.ru",
+                Password = "15022021",
+                IsSSLUsed = true
+            });
         }
 
         public IEnumerable<Server> GetAll() => _servers;

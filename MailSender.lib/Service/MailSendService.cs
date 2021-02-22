@@ -12,8 +12,7 @@ namespace MailSender.Service
 
         private class MailSender : IMailSender
         {
-            public delegate void EmailSendServiceHandler(string message);
-            public event EmailSendServiceHandler ShowEndWindowMessage;
+            public event Action<string> ShowEndWindowMessage;
 
             private string _address;
             private int _port;

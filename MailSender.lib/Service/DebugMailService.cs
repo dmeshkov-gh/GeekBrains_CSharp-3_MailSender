@@ -12,6 +12,8 @@ namespace MailSender.lib.Service
     {
         private readonly IStatistics _statistics;
 
+        public event Action<string> ShowEndWindowMessage;
+
         public DebugMailService(IStatistics statistics) => _statistics = statistics;
 
         public void SendEmail(string from, string to, string title, string body)

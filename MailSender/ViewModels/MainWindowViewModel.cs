@@ -194,6 +194,7 @@ namespace MailSender.ViewModels
             var receiver = SelectedReceiver;
             var message = SelectedMessage;
 
+            client.ShowEndWindowMessage += ShowStatusDeliveryMessage;
             client.SendEmail(sender.Address, receiver.Address, message.Title, message.Body);
         }
 
