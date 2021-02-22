@@ -96,7 +96,7 @@ namespace MailSender.ViewModels
                 Servers.Add(server);
         }
 
-
+        #region Команды для добавления, редактирования и удаления серверов
         //Добавить сервер
         private ICommand _addServerCommand;
 
@@ -177,8 +177,9 @@ namespace MailSender.ViewModels
 
             Servers.Remove(server);
         }
+        #endregion
 
-
+        #region Команды для добавления, редактирования и удаления отправителей
         //Добавить отправителя
         private ICommand _addSenderCommand;
 
@@ -191,12 +192,13 @@ namespace MailSender.ViewModels
         private void AddSender(object p)
         {
             int nextId = Senders.DefaultIfEmpty().Max(s => s.Id) + 1;
+
             if (!EditUserWindow.Create(nextId, out int id, out string name, out string address, out string description))
                 return;
 
             Sender sender = new Sender
             {
-                Id = Senders.DefaultIfEmpty().Max(s => s.Id) + 1,
+                Id = nextId,
                 Name = name,
                 Address = address,
                 Description = description
@@ -204,6 +206,50 @@ namespace MailSender.ViewModels
 
             Senders.Add(sender);
         }
+
+        //Редактировать отправителя
+        private ICommand _editSenderCommand;
+
+        public ICommand EditSenderCommand => _editSenderCommand ??= new LambdaCommand(OnEditSenderCommandExecuted, CanEditSenderCommandExecute);
+
+        private bool CanEditSenderCommandExecute(object p) => p is Sender;
+
+        private void OnEditSenderCommandExecuted(object p) => EditSender(p);
+
+        private void EditSender(object p)
+        {
+            if (!(p is Sender sender)) return;
+
+            int id = sender.Id;
+            string name = sender.Name;
+            string address = sender.Address;
+            string description = sender.Description;
+
+            if (!EditUserWindow.ShowDialog("Редактирование отправителя", ref id, ref name, ref address, ref description)) return;
+
+            sender.Id = id;
+            sender.Name = name;
+            sender.Address = address;
+            sender.Description = description;
+
+        }
+
+        //Удалить отправителя
+        private ICommand _deleteSenderCommand;
+
+        public ICommand DeleteSenderCommand => _deleteSenderCommand ??= new LambdaCommand(OnDeleteSenderCommandExecuted, CanDeleteSenderCommandExecute);
+
+        private bool CanDeleteSenderCommandExecute(object p) => p is Sender;
+
+        private void OnDeleteSenderCommandExecuted(object p) => DeleteSender(p);
+
+        private void DeleteSender(object p)
+        {
+            if (!(p is Sender sender)) return;
+
+            Senders.Remove(sender);
+        }
+        #endregion
 
         //Отправить сообщение
         private ICommand _sendMessageCommand;

@@ -1,10 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace MailSender
 {
-    public partial class EditUserWindow : Window
+    public partial class EditUserWindow
     {
         private EditUserWindow()
         {
@@ -21,7 +22,7 @@ namespace MailSender
             return ShowDialog("Добавить пользователя", ref id, ref name, ref address, ref description);
         }
 
-        private static bool ShowDialog(string title, ref int id, ref string name, ref string address, ref string description)
+        public static bool ShowDialog(string title, ref int id, ref string name, ref string address, ref string description)
         {
             EditUserWindow window = new EditUserWindow
             {

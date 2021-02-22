@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MailSender"
         mc:Ignorable="d"
-        Title="Окно пользователя" Height="120" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Окно пользователя" Height="130" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition/>
