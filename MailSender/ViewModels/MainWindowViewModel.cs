@@ -5,6 +5,7 @@ using MailSender.Models;
 using MailSender.ViewModels.Base;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MailSender.ViewModels
@@ -194,6 +195,11 @@ namespace MailSender.ViewModels
             var message = SelectedMessage;
 
             client.SendEmail(sender.Address, receiver.Address, message.Title, message.Body);
+        }
+
+        private void ShowStatusDeliveryMessage(string message)
+        {
+            MessageBox.Show(message);
         }
         #endregion
 

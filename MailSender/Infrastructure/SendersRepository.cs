@@ -15,7 +15,7 @@ namespace MailSender.Infrastructure
                 {
                     Id = 1,
                     Name = "Иванов",
-                    Address = "ivanov@server.ru",
+                    Address = "test-email-geekbrains@yandex.ru",
                     Description = "Почта от Иванова"
                 },
 
