@@ -26,6 +26,7 @@ namespace MailSender.ViewModels
         private Message _selectedMessage;
 
         private readonly IMailService _mailService;
+        private readonly IStatistics _statistics;
 
         public string Title { get => _title; set => Set(ref _title, value); }
 
@@ -41,13 +42,14 @@ namespace MailSender.ViewModels
         public Receiver SelectedReceiver { get => _selectedReceiver; set => Set(ref _selectedReceiver, value); }
         public Message SelectedMessage { get => _selectedMessage; set => Set(ref _selectedMessage, value); }
 
-        public MainWindowViewModel(ServersRepository servers, SendersRepository senders, ReceiversRepository receivers, MessagesRepository messages, IMailService mailService)
+        public MainWindowViewModel(ServersRepository servers, SendersRepository senders, ReceiversRepository receivers, MessagesRepository messages, IMailService mailService, IStatistics statistics)
         {
             _serversRepositry = servers;
             _sendersRepository = senders;
             _receiversRepository = receivers;
             _messagesRepository = messages;
             _mailService = mailService;
+            _statistics = statistics;
         }
 
         #region Commands
@@ -189,7 +191,7 @@ namespace MailSender.ViewModels
         private void SendMessage()
         {
             var server = SelectedServer;
-            var client = _mailService.GetSender(server.Address, server.Port, server.IsSSLUsed, server.Login, server.Password);
+            var client = _mailService.GetSender(server.Address, server.Port, server.IsSSLUsed, server.Login, server.Password, _statistics);
             var sender = SelectedSender;
             var receiver = SelectedReceiver;
             var message = SelectedMessage;
