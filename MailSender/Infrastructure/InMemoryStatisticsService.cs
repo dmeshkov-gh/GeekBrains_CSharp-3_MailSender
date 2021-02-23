@@ -25,15 +25,29 @@ namespace MailSender.Infrastructure
             ReceiversCountChanged?.Invoke(this, EventArgs.Empty);
         }
 
+        public void RemoveReceiver()
+        {
+            _receiversCount--;
+            ReceiversCountChanged?.Invoke(this, EventArgs.Empty);
+        }
+
         public void GetSender()
         {
             _sendersCount++;
             SendersCountChanged?.Invoke(this, EventArgs.Empty);
         }
+
+        public void RemoveSender()
+        {
+            _sendersCount--;
+            SendersCountChanged?.Invoke(this, EventArgs.Empty);
+        }
+
         public void MailSended()
         {
             _sentMailCount++;
             SentMailCountChanged?.Invoke(this, EventArgs.Empty);
         }
+
     }
 }

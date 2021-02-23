@@ -17,5 +17,9 @@ namespace MailSender.lib.Interfaces
         void GetSender();
 
         void GetReceiver();
+
+        void RemoveSender();
+
+        void RemoveReceiver();
     }
 }

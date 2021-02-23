@@ -204,6 +204,7 @@ namespace MailSender.ViewModels
                 Description = description
             };
 
+            _statistics.GetSender();
             Senders.Add(sender);
         }
 
@@ -247,6 +248,7 @@ namespace MailSender.ViewModels
         {
             if (!(p is Sender sender)) return;
 
+            _statistics.RemoveSender();
             Senders.Remove(sender);
         }
         #endregion
