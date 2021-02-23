@@ -55,7 +55,8 @@ namespace MailSender.Controls
             DependencyProperty.Register(
                 nameof(SelectedItem),
                 typeof(object),
-                typeof(ItemsPanel));
+                typeof(ItemsPanel),
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public object SelectedItem
         {
