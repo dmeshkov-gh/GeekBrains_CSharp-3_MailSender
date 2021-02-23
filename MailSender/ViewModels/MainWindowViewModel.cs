@@ -253,6 +253,80 @@ namespace MailSender.ViewModels
         }
         #endregion
 
+        #region Команды для добавления, редактирования и удаления получателей
+        //Добавить получателя
+        private ICommand _addReceiverCommand;
+
+        public ICommand AddReceiverCommand => _addReceiverCommand ??= new LambdaCommand(OnAddReceiverCommandExecuted, CanAddReceiverCommandExecute);
+
+        private bool CanAddReceiverCommandExecute(object p) => p is Receiver;
+
+        private void OnAddReceiverCommandExecuted(object p) => AddReceiver(p);
+
+        private void AddReceiver(object p)
+        {
+            int nextId = Receivers.DefaultIfEmpty().Max(s => s.Id) + 1;
+
+            if (!EditUserWindow.Create(nextId, out int id, out string name, out string address, out string description))
+                return;
+
+            Receiver receiver = new Receiver
+            {
+                Id = nextId,
+                Name = name,
+                Address = address,
+                Description = description
+            };
+
+            _statistics.GetReceiver();
+            Receivers.Add(receiver);
+        }
+
+        //Редактировать получателя
+        private ICommand _editReceiverCommand;
+
+        public ICommand EditReceiverCommand => _editReceiverCommand ??= new LambdaCommand(OnEditReceiverCommandExecuted, CanEditReceiverCommandExecute);
+
+        private bool CanEditReceiverCommandExecute(object p) => p is Receiver;
+
+        private void OnEditReceiverCommandExecuted(object p) => EditReceiver(p);
+
+        private void EditReceiver(object p)
+        {
+            if (!(p is Receiver receiver)) return;
+
+            int id = receiver.Id;
+            string name = receiver.Name;
+            string address = receiver.Address;
+            string description = receiver.Description;
+
+            if (!EditUserWindow.ShowDialog("Редактирование отправителя", ref id, ref name, ref address, ref description)) return;
+
+            receiver.Id = id;
+            receiver.Name = name;
+            receiver.Address = address;
+            receiver.Description = description;
+
+        }
+
+        //Удалить получателя
+        private ICommand _deleteReceiverCommand;
+
+        public ICommand DeleteReceiverCommand => _deleteReceiverCommand ??= new LambdaCommand(OnDeleteReceiverCommandExecuted, CanDeleteReceiverCommandExecute);
+
+        private bool CanDeleteReceiverCommandExecute(object p) => p is Receiver;
+
+        private void OnDeleteReceiverCommandExecuted(object p) => DeleteReceiver(p);
+
+        private void DeleteReceiver(object p)
+        {
+            if (!(p is Receiver receiver)) return;
+
+            _statistics.RemoveReceiver();
+            Receivers.Remove(receiver);
+        }
+        #endregion
+
         //Отправить сообщение
         private ICommand _sendMessageCommand;
 

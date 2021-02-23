@@ -97,9 +97,12 @@
                         </ToolBar>
 
                         <ToolBar Margin="5,0,0,0" Header="Получатели" Band="1">
-                            <Button ToolTip="Добавить" Margin="4,0,0,0" fa:Awesome.Content="Solid_Plus" Foreground="Green"/>
-                            <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_UserEdit" Foreground="Orange"/>
-                            <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_TrashAlt" Foreground="Red"/>
+                            <Button ToolTip="Добавить" Margin="4,0,0,0" fa:Awesome.Content="Solid_Plus" Foreground="Green"
+									Command="{Binding AddReceiverCommand}" CommandParameter="{Binding SelectedReceiver}"/>
+                            <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_UserEdit" Foreground="Orange"
+									Command="{Binding EditReceiverCommand}" CommandParameter="{Binding SelectedReceiver}"/>
+                            <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_TrashAlt" Foreground="Red"
+									Command="{Binding DeleteReceiverCommand}" CommandParameter="{Binding SelectedReceiver}"/>
                         </ToolBar>
                     </ToolBarTray>
 
