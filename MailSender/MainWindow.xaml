@@ -53,32 +53,7 @@
 												 DeleteCommand="{Binding DeleteServerCommand}"
 												 ItemsSource ="{Binding Servers}"
 												 SelectedItem="{Binding SelectedServer}"/>
-
-							<!--<ComboBox Name="ServersList" Width="200" Margin="31,0,0,0" SelectedIndex="0"
-                                         ItemsSource="{Binding Servers}" SelectedItem="{Binding SelectedServer}">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock>
-                                            <TextBlock.ToolTip>
-                                                <TextBlock>
-                                                    <TextBlock Text="{Binding Address}"/>
-                                                    :
-                                                    <TextBlock Text="{Binding Port}"/>
-                                                </TextBlock>
-                                            </TextBlock.ToolTip>
-                                            <TextBlock Text="{Binding Name}"/>
-                                        </TextBlock>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-
-                            <Button ToolTip="Добавить" Margin="5,0,0,0" fa:Awesome.Content="Solid_Plus" Foreground="Green" 
-									Command="{Binding AddServerCommand}" CommandParameter="{Binding SelectedServer}"/>
-                            <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_Edit" Foreground="Orange" 
-									Command="{Binding EditServerCommand}" CommandParameter="{Binding SelectedServer}"/>
-                            <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_TrashAlt" Foreground="Red" 
-									Command="{Binding DeleteServerCommand}" CommandParameter="{Binding SelectedServer}"/>-->
-                        </ToolBar>
+						</ToolBar>
 
 						<ToolBar Band="1">
 							<controls:ItemsPanel Title="Отправители" 
@@ -89,12 +64,13 @@
 												 SelectedItem="{Binding SelectedSender}"/>
 						</ToolBar>
                         
-                        <ToolBar Margin ="7,0,0,0" Band="0">
-                            <TextBlock Text="Планировщик" VerticalAlignment="Center"/>
-                            <Button Name ="Scheduler_Btn" ToolTip="Добавить задачу" 
+                        <ToolBar Margin ="5,0,0,0" Band="0">
+							<TextBlock Margin="4,0,0,0" Text="Планировщик" VerticalAlignment="Center"/>
+							<Button Name ="Scheduler_Btn" ToolTip="Добавить задачу" 
                                     fa:Awesome.Content="Regular_CalendarAlt" 
-                                    Foreground="Blue" Click="Scheduler_Btn_Click"></Button>
-                        </ToolBar>
+                                    Foreground="Blue" Click="Scheduler_Btn_Click"
+									Margin="4,0,0,0"/>
+						</ToolBar>
 
                         <ToolBar Margin="5,0,0,0" Header="Получатели" Band="1">
                             <Button ToolTip="Добавить" Margin="4,0,0,0" fa:Awesome.Content="Solid_Plus" Foreground="Green"
@@ -147,7 +123,7 @@
                                 </StackPanel.Resources>
                                 <Button Content="Запланировать"/>
 								<Button Command="{Binding SendMessageCommand}">
-									<StackPanel Orientation="Horizontal">
+									<StackPanel Orientation="Horizontal" ToolTip="Выберите сервер, отправителя, получателя и письмо">
 										<TextBlock Text="Отправить" VerticalAlignment="Center" />
 										<fa:ImageAwesome Icon="Regular_Envelope" Height="12" Margin="5,0,0,0"/>
 									</StackPanel>

@@ -35,7 +35,7 @@
 					CommandParameter="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType=local:ItemsPanel}}"/>
 		</StackPanel>
 
-		<ComboBox MinWidth="200" Name="SendersList" SelectedIndex="0" VerticalAlignment="Center"
+		<ComboBox Width="210" Name="SendersList" SelectedIndex="0" VerticalAlignment="Center"
 				  ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource AncestorType=local:ItemsPanel}}" 
 				  SelectedItem="{Binding SelectedItem, RelativeSource={RelativeSource AncestorType=local:ItemsPanel}}">
 			<ComboBox.ItemTemplate>	
