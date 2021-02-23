@@ -4,6 +4,7 @@ using System;
 using System.Windows.Input;
 using MailSender.Models;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace MailSender.Controls
 {
@@ -17,6 +18,7 @@ namespace MailSender.Controls
             InitializeComponent();
         }
 
+        //Заголовок
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register(
                 nameof(Title),
@@ -34,33 +36,34 @@ namespace MailSender.Controls
             set => SetValue(TitleProperty, value); 
         }
 
-
-        public static readonly DependencyProperty ServersProperty =
+        //Ресурс комбобокса
+        public static readonly DependencyProperty ItemsSourceProperty =
             DependencyProperty.Register(
-                nameof(Servers),
-                typeof(ObservableCollection<>),
+                nameof(ItemsSource),
+                typeof(IEnumerable<object>),
                 typeof(ItemsPanel));
 
-        public ObservableCollection<Server> Servers
+
+        public IEnumerable<object> ItemsSource
         {
-            get => (ObservableCollection<Server>)GetValue(SelectedUserProperty);
-            set => SetValue(SelectedUserProperty, value);
+            get => (IEnumerable<object>)GetValue(ItemsSourceProperty);
+            set => SetValue(ItemsSourceProperty, value);
         }
 
-
-        public static readonly DependencyProperty SelectedUserProperty =
+        //Выбранный элемент
+        public static readonly DependencyProperty SelectedItemProperty =
             DependencyProperty.Register(
-                nameof(SelectedUser),
-                typeof(User),
+                nameof(SelectedItem),
+                typeof(object),
                 typeof(ItemsPanel));
 
-        public User SelectedUser
+        public object SelectedItem
         {
-            get => (User)GetValue(SelectedUserProperty);
-            set => SetValue(SelectedUserProperty, value);
+            get => (object)GetValue(SelectedItemProperty);
+            set => SetValue(SelectedItemProperty, value);
         }
 
-
+        //Команда добавить
         public static readonly DependencyProperty AddCommandProperty =
             DependencyProperty.Register(
                 nameof(AddCommand),
@@ -73,20 +76,19 @@ namespace MailSender.Controls
             set => SetValue(AddCommandProperty, value);
         }
 
-
+        //Команда редактировать
         public static readonly DependencyProperty EditCommandProperty =
             DependencyProperty.Register(
                 nameof(EditCommand),
                 typeof(ICommand),
                 typeof(ItemsPanel));
-
         public ICommand EditCommand
         {
             get => (ICommand)GetValue(EditCommandProperty);
             set => SetValue(EditCommandProperty, value);
         }
 
-
+        //Команда удалить
         public static readonly DependencyProperty DeleteCommandProperty =
             DependencyProperty.Register(
                 nameof(DeleteCommand),
