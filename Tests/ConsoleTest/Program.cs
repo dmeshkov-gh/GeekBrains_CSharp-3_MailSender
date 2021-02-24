@@ -6,7 +6,7 @@ namespace ConsoleTest
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             MailAddress from = new MailAddress("dm_91@bk.ru", "Dmitry");
             MailAddress to = new MailAddress("dmitry.meshkov@icloud.com", "Dmitry");

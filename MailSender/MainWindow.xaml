@@ -3,10 +3,294 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
+        xmlns:m="clr-namespace:MailSender.Models;assembly=MailSender.lib" 
+		xmlns:tk="http://schemas.xceed.com/wpf/xaml/toolkit"
+		xmlns:controls="clr-namespace:MailSender.Controls"
+        xmlns:data="clr-namespace:MailSender.Data"
         xmlns:local="clr-namespace:MailSender"
+		xmlns:viewModels="clr-namespace:MailSender.ViewModels"
+		xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="{Binding Title}" Height="450" MinHeight="450" Width="800" MinWidth="600" 
+        WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip"
+		DataContext="{Binding MainWindowViewModel, Source={StaticResource Locator}}">
+	<b:Interaction.Triggers>
+		<b:EventTrigger EventName="Loaded">
+			<b:InvokeCommandAction Command="{Binding LoadDataCommand}"/>
+		</b:EventTrigger>
+	</b:Interaction.Triggers>
+	<DockPanel >
+        
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Выход" Command="{StaticResource CloseAppCommand}"/>
+            </MenuItem>
+        </Menu>
+        
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem DockPanel.Dock="Right">
+                <ResizeGrip/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Text="{Binding Status}"/>
+            </StatusBarItem>
+        </StatusBar>
 
-    </Grid>
+        <TabControl>
+            <TabItem Header="Списки">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+					<ToolBarTray>
+						<ToolBar Band="0">
+							<controls:ItemsPanel Title="Сервера"
+												 AddCommand="{Binding AddServerCommand}"
+												 EditCommand="{Binding EditServerCommand}"
+												 DeleteCommand="{Binding DeleteServerCommand}"
+												 ItemsSource ="{Binding Servers}"
+												 SelectedItem="{Binding SelectedServer}"/>
+						</ToolBar>
+
+						<ToolBar Band="1">
+							<controls:ItemsPanel Title="Отправители" 
+												 AddCommand="{Binding AddSenderCommand}"
+												 EditCommand="{Binding EditSenderCommand}"
+												 DeleteCommand="{Binding DeleteSenderCommand}"
+												 ItemsSource="{Binding Senders}"
+												 SelectedItem="{Binding SelectedSender}"/>
+						</ToolBar>
+                        
+                        <ToolBar Margin ="5,0,0,0" Band="0">
+							<TextBlock Margin="4,0,0,0" Text="Планировщик" VerticalAlignment="Center"/>
+							<Button Name ="Scheduler_Btn" ToolTip="Добавить задачу" 
+                                    fa:Awesome.Content="Regular_CalendarAlt" 
+                                    Foreground="Blue" Click="Scheduler_Btn_Click"
+									Margin="4,0,0,0"/>
+						</ToolBar>
+
+                        <ToolBar Margin="5,0,0,0" Header="Получатели" Band="1">
+                            <Button ToolTip="Добавить" Margin="4,0,0,0" fa:Awesome.Content="Solid_Plus" Foreground="Green"
+									Command="{Binding AddReceiverCommand}" CommandParameter="{Binding SelectedReceiver}"/>
+                            <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_UserEdit" Foreground="Orange"
+									Command="{Binding EditReceiverCommand}" CommandParameter="{Binding SelectedReceiver}"/>
+                            <Button ToolTip="Редактировать" fa:Awesome.Content="Solid_TrashAlt" Foreground="Red"
+									Command="{Binding DeleteReceiverCommand}" CommandParameter="{Binding SelectedReceiver}"/>
+                        </ToolBar>
+                    </ToolBarTray>
+
+                    <GroupBox Grid.Row="1" Header="Список получателей">
+                        <DataGrid Name="ReceiversList" ItemsSource="{Binding Receivers}" SelectedItem="{Binding SelectedReceiver}" 
+                                  AutoGenerateColumns="False" 
+                                  IsReadOnly="True"
+                                  GridLinesVisibility="Vertical"
+                                  AlternatingRowBackground="AliceBlue"
+                                  VerticalGridLinesBrush="Gray">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" MinWidth="30" Binding="{Binding Id}"/>
+                                <DataGridTextColumn Header="Имя" Width="*" Binding="{Binding Name}"/>
+                                <DataGridTextColumn Header="Адрес" MinWidth="120" Binding="{Binding Address}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Name="Schedule_TabItem" Header="Расписание">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="195" MaxWidth="250"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <GroupBox Grid.Column="0" Header="Планирование">
+                        <StackPanel>
+                            
+                            <TextBlock Text="Дата задания" HorizontalAlignment="Center"/>
+                            <Calendar/>
+                            <TextBlock Text="Время" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                            <TextBox Margin="10,0" HorizontalContentAlignment="Center"/>
+
+                            <StackPanel Margin="10">
+                                <StackPanel.Resources>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Margin" Value="0,5"/>
+                                        <Setter Property="Background" Value="White"/>
+                                    </Style>
+                                </StackPanel.Resources>
+                                <Button Content="Запланировать"/>
+								<Button Command="{Binding SendMessageCommand}">
+									<StackPanel Orientation="Horizontal" ToolTip="Выберите сервер, отправителя, получателя и письмо">
+										<TextBlock Text="Отправить" VerticalAlignment="Center" />
+										<fa:ImageAwesome Icon="Regular_Envelope" Height="12" Margin="5,0,0,0"/>
+									</StackPanel>
+								</Button>
+							</StackPanel>
+                            
+                        </StackPanel>
+                    </GroupBox>
+                    
+                    <GroupBox Grid.Column="1" Header="Задания">
+                        <ListBox>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="Margin" Value="0,0,0,5"/>
+                                    <Setter Property="Padding" Value="5"/>
+                                    <Setter Property="BorderBrush" Value="CornflowerBlue"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+
+                            <ListBoxItem>
+                                <GroupBox>
+                                    <GroupBox.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Задание от 17.02.2021 16:30" VerticalAlignment="Center"/>
+                                            <Button ToolTip="Закрыть задание" fa:Awesome.Content="Regular_CalendarTimes" 
+                                                    Foreground="Red" Background="White" BorderThickness="0" Margin="10,0,0,0"></Button>
+                                        </StackPanel>
+                                    </GroupBox.Header>
+
+                                    <Grid> 
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Отправитель:" Margin="0,0,5,0"/>
+                                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Иванов И.И."/>
+
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Получатель:" Margin="0,0,5,0" Height="48" Grid.RowSpan="2" VerticalAlignment="Top"/>
+                                        <ItemsControl Grid.Row="1" Grid.Column="1">
+                                            <TextBlock Text="Иванов И.И."/>
+                                            <TextBlock Text="Петров П.П."/>
+                                            <TextBlock Text="Сидоров С.С."/>
+                                        </ItemsControl>
+
+                                        <TextBlock Grid.Column="0" Grid.Row="2" Text="Письмо:"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="2" Text="Тема письма"/>
+                                    </Grid>
+                                </GroupBox>
+                            </ListBoxItem>
+
+                            <ListBoxItem>
+                                <GroupBox>
+                                    <GroupBox.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Задание от 17.02.2021 16:30" VerticalAlignment="Center"/>
+                                            <Button ToolTip="Закрыть задание" fa:Awesome.Content="Regular_CalendarTimes" 
+                                                    Foreground="Red" Background="White" BorderThickness="0" Margin="10,0,0,0"></Button>
+                                        </StackPanel>
+                                    </GroupBox.Header>
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Отправитель:" Margin="0,0,5,0"/>
+                                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Иванов И.И."/>
+
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Получатель:" Margin="0,0,5,0" Height="48" Grid.RowSpan="2" VerticalAlignment="Top"/>
+                                        <ItemsControl Grid.Row="1" Grid.Column="1">
+                                            <TextBlock Text="Иванов И.И."/>
+                                            <TextBlock Text="Петров П.П."/>
+                                            <TextBlock Text="Сидоров С.С."/>
+                                        </ItemsControl>
+
+                                        <TextBlock Grid.Column="0" Grid.Row="2" Text="Письмо:"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="2" Text="Тема письма"/>
+                                    </Grid>
+                                </GroupBox>
+                            </ListBoxItem>
+                        </ListBox>
+                    </GroupBox>
+                    
+                    <GridSplitter Grid.Column="0"
+                        VerticalAlignment="Stretch"
+                        HorizontalContentAlignment="Right"
+                        Width="3"
+                        Foreground="Transparent"/>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Письма">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="150"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <GroupBox Grid.Column="0" Header="Письма">
+                        <ListBox Name="MessagesList" ItemsSource="{Binding Messages}" SelectedItem="{Binding SelectedMessage}" 
+                                 DisplayMemberPath="Title" SelectedIndex="0"/>
+                    </GroupBox>
+
+                    <GroupBox Grid.Column="1" Header="Редактор">
+                        <DockPanel >
+                            <GroupBox DockPanel.Dock="Top" Header="Заголовок">
+                                <TextBox Text="{Binding SelectedItem.Title, ElementName=MessagesList}"/>
+                            </GroupBox>
+                            
+                            <GroupBox Header="Текст письма">
+                                <TextBox AcceptsReturn="True" AcceptsTab="True"
+                                         Text="{Binding SelectedItem.Body, ElementName=MessagesList}"/>
+                            </GroupBox>
+                        </DockPanel>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+
+			<TabItem Header="Статистика" DataContext="{Binding StatisticsViewModel, Source={StaticResource Locator}}">
+                <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Margin" Value="3"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Style.Triggers>
+                                <Trigger Property="Grid.Column" Value="0">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    <Setter Property="Margin" Value="0,0,5,0"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Отправлено писем:"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding SentMailsCount}"/>
+
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Всего отправителей:"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding SendersCount}"/>
+
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Всего получателей:"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding ReceiversCount}"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </DockPanel>
 </Window>
